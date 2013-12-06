@@ -104,15 +104,22 @@ $(document).ready(function() {
 			if(letter == nextLetter) {
 				//if all letters are collected
 				if(collectedCount == word.length-1) {
+					//go to next level if level 12 is not reached
+					//else stay there
 					if(level < 12) {
 						level++;
 					}
+					//reset counter and initialize level
 					collectedCount = 1;
 					initLevel();
 				}else {
+					//else just update counter
 					collectedCount++;
 				}
 			}else {
+				//if wrong letter is collected
+				//decrease counter until no more letters in current words are left
+				//then decrease level until game over is reached
 				if(collectedCount > 1) {
 					collectedCount--;
 				}else {
@@ -199,7 +206,7 @@ $(document).ready(function() {
 			case 5:
   				var limit = words_level_5_array.length;
 				var randomIndex = Math.floor((Math.random()*limit)+0);
-				word = words_level_6_array[randomIndex];
+				word = words_level_5_array[randomIndex];
   				break;
 			case 6:
   				var limit = words_level_6_array.length;
