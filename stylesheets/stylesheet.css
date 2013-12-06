@@ -69,7 +69,7 @@ a:hover {
 
 h1.title {
   margin: 30px 20px 10px;
-  font-size: 60px;
+  font-size: 49px;
   font-family: 'Press Start 2P', cursive;
   text-align: center;
 }
@@ -89,6 +89,7 @@ p.tagline {
   padding: 20px 20px 0;
   color: #fff;
   font-size: 17px;
+  font-family: 'Press Start 2P', cursive;
 }
 
 #main {
