@@ -17,7 +17,7 @@ $(document).ready(function() {
 	//word that needs to be collected each level
 	var word ;
 	//speed of falling letters (time needed for letter to fall)
-	var speed = 1500;
+	var speed = 2000;
 	
 	//gap to next letter in the word
 	var nextGap =getNextGap();
