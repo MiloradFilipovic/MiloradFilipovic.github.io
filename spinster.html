@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="Spinster. A spin-transformation effect generator.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Spinster</title>
+        <link rel="stylesheet" href="stylesheets/screen.css">
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Slabo+27px&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <script src="javascripts/jquery-2.0.3.min.js"></script>
+        <script src="javascripts/spinster.js"></script>
+    </head>
+    <body>
+        <div class="mainContainer">
+            <header>
+                <h1>Spinster</h1>
+                <h2>A spin-transform effect generator.</h2>
+            </header>
+            <div class="row firstRow">
+                <div class="numberColumn">
+                    <div class="numberBackground verticalAlign numberOne"></div>
+                </div>
+                <div class="contentColumn">
+                    Go to <a href="http://fortawesome.github.io/Font-Awesome/icons/">Font awesome</a> and choose start and final icons (copy only icon-specific class names). Also, enter an ID for your new icon.
+                    <table class="iconsForm">
+                        <tr>
+                            <td><label for="txtStartIcon">Start icon</label></td>
+                            <td><input type="text" id="txtStartIcon" autocomplete="off"></td>
+                            <td>(eg. <span class="exampleSpan">fa-anchor</span>)</td>
+                        </tr>
+                        <tr>
+                            <td><label for="txtFinalIcon">Final icon</label></td>
+                            <td><input type="text" id="txtFinalIcon" autocomplete="off"></td>
+                            <td>(eg. <span class="exampleSpan">fa-bars</span>)</td>
+                        </tr>
+                        <tr>
+                            <td><label for="txtIconID">ID</label></td>
+                            <td><input type="text" id="txtIconID" autocomplete="off"></td>
+                            <td><button id="btnGenerate">Generate</button></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row secondRow">
+                <div class="numberColumn">
+                    <div class="numberBackground verticalAlign numberTwo"></div>
+                </div>
+                <div class="contentColumn">
+                    <h1 class="verticalAlign">Result:</h1>
+                    <span class="resultSpan spinnable fa fa-3x nja"></span>
+                </div>
+            </div>
+            <div class="row thirdRow">
+                <div class="numberColumn">
+                    <div class="numberBackground numberThree"></div>
+                </div>
+                <div class="contentColumn">
+                    <span class="codeLabel">HTML:</span>
+                    <div id="HTMLCode" class="codeContainer"></div>
+                    <span class="codeLabel">CSS classes:</span>
+                    <div id="CSSCode" class="codeContainer"></div>
+                    <span class="codeLabel">jQuery code:</span>
+                    <div id="jQueryCode" class="codeContainer"></div>
+                    <span class="codeLabel">Vanilla JS:</span>
+                    <div id="jsCode" class="codeContainer">Comming soon.</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
