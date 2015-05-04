@@ -55,5 +55,6 @@ $(document).ready(function(e) {
 $.fn.multiline = function(text){
     this.text(text);
     this.html(this.html().replace(/\n/g,'<br/>'));
+    this.html(this.html().replace(/\t/g, '&nbsp;&nbsp;&nbsp;&nbsp;'));
     return this;
 }

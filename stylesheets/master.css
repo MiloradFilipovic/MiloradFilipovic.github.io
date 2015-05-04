@@ -77,6 +77,10 @@ a img: {
     border-bottom: 1px dashed #f1efd8;
 }
 
+.row:last-child {
+    border-bottom: none;
+}
+
 .firstRow, .secondRow {
     height: 12.5em;
 }
