@@ -8,9 +8,9 @@ $(document).ready(function(e) {
 
     $("#btnGenerate").click(function(e) {
         clearInterval(iconInterval);
-        var startIcon = $("#txtStartIcon").val();
-        var finalIcon = $("#txtFinalIcon").val();
-        var id = $("#txtIconID").val();
+        var startIcon = $("#txtStartIcon").val().trim();
+        var finalIcon = $("#txtFinalIcon").val().trim();
+        var id = $("#txtIconID").val().trim();
 
         if(startIcon != "" && finalIcon != "" && id != "") {
            resultSpan.removeClass(resultSpan.attr('class').split(' ').pop());
@@ -43,7 +43,7 @@ $(document).ready(function(e) {
                             "\}");
 
         jQueryCode.empty();
-        jQueryCode.multiline(   "$('#" + id + "').toggleClass('spin "  + finalIcon + " " + startIcon + ")\;");
+        jQueryCode.multiline(   "$('#" + id + "').toggleClass('spin "  + finalIcon + " " + startIcon + "')\;");
 
         // .secondRow, .thirdRow
         $(".secondRow").fadeIn("fast", function() {
