@@ -55,7 +55,7 @@ a img: {
 .mainContainer header {
     text-align: center;
     border-bottom: 1px dashed #f1efd8;
-    padding-bottom: 1.625em;
+    padding-bottom: 1em;
 }
 
 .mainContainer h1 {
@@ -63,11 +63,17 @@ a img: {
     text-transform: uppercase;
 }
 
-.mainContainer h2 {
+.mainContainer h2.mainH2 {
     font-size: 1.6em;
     color: #808080;
     font-family: "Roboto Condensed",sans-serif;
     margin-top: -0.625em;
+}
+
+.mainContainer h2.topH2 {
+    font-size: 1em;
+    margin-bottom: -0.5em;
+    padding-top: 0.625em;
 }
 
 .row {

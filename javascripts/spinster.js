@@ -43,7 +43,7 @@ $(document).ready(function(e) {
                             "\}");
 
         jQueryCode.empty();
-        jQueryCode.multiline(   "$('#" + id + "').toggleClass('spin "  + finalIcon + " " + startIcon + "')\;");
+        jQueryCode.multiline(   "$('#" + id + "').toggleClass('spin "  + finalIcon + " " + startIcon + "'A spin-transform effect generator)\;");
 
         // .secondRow, .thirdRow
         $(".secondRow").fadeIn("fast", function() {
