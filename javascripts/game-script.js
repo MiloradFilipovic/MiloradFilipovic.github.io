@@ -37,6 +37,9 @@ $(document).ready(function() {
 		return false;
 	});
 	
+	// *****************************************************************
+	// 					   Where the magic happens
+	// *****************************************************************
 	function startGame() {
 		$("*").css({"cursor":"none"});
 		//new letter is created every 300 miliseconds
