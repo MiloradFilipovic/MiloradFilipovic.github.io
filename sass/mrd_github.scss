@@ -139,10 +139,16 @@ h2.info_sub {
     }
 
     .about {
-        left: -15px;
+        left: -18px;
         top: 67%;
         width: 48%;
-        cursor: default;
+
+        .beam {
+            position: absolute;
+            left: -11%;
+            top: 73%;
+            width: 25px;
+        }
     }
 }
 
@@ -184,6 +190,7 @@ h2.info_sub {
     outline: 1px solid transparent; /* Chrome jaggy edges fix */
 }
 
+.blinking_beam { animation: blinker steps(1) 1000ms infinite; }
 .blinking { animation: blinker steps(1) 300ms infinite; }
 @keyframes blinker {  
     0% { opacity: .7; }

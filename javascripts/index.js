@@ -58,16 +58,6 @@ $(document).ready(function(e) {
         }
     });
 
-    $(".link_activator").click(function(e) {
-        $(".extLink").each(function() {
-            console.log($(this).attr("href"))
-            $.get("/run/the/report", function(result) {
-                var popup = window.open("about:blank", $(this).text());
-                popup.location = $(this).attr("href");
-            })
-        });
-    });
-
     // CONTINENT HOVER
     $('.continent').hover(function(e) {
         if($(this).css('opacity') == 1) {
@@ -75,12 +65,15 @@ $(document).ready(function(e) {
             $('.' + activates).stop().fadeIn();
             if($(this).hasClass('game')) {
                 $('.screen').fadeIn().addClass('blinking');
+            }else if($(this).hasClass('about')) {
+                $('.beam').removeClass('blinking_beam');
             }
         }
     }, function(e) {
         var activates = $(this).attr('data-activates');
         $('.' + activates).stop().fadeOut();
         $('.screen').hide().fadeOut('blinking');
+        $('.beam').addClass('blinking_beam');
     });
 
 });
