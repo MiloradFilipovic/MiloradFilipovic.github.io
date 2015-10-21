@@ -1,0 +1,32 @@
+@mixin transition {
+    -webkit-transition: all $transform_speed linear;
+       -moz-transition: all $transform_speed linear;
+        -ms-transition: all $transform_speed linear;
+         -o-transition: all $transform_speed linear;
+            transition: all $transform_speed linear;
+    outline: 1px solid transparent;
+}
+
+@mixin rotate($deg) {
+    -webkit-transform: rotate($deg + deg); /* Safari */
+        -ms-transform: rotate($deg + deg); /* IE 9 */
+            transform: rotate($deg + deg);
+    -webkit-backface-visibility: hidden; /* Improve transformed images rendering on Win Chrome */
+}
+
+@mixin laptop_res() {
+	@media screen and (max-height: 770px) {
+		@content;
+	}
+}
+
+@mixin selection($text, $background) {
+    ::-moz-selection {
+        color: $text;
+        background: $background;
+    }
+    ::selection {
+        color: $text;
+        background: $background;
+    }
+}

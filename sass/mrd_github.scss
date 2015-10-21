@@ -1,0 +1,226 @@
+@import 'functions', 'vars', 'mixins';
+@include selection(#fff, $selection_color);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow: hidden;
+    font-family: $font_main;
+}
+
+h1 { font-size: 2.5em; }
+
+.main_container {
+    height: 100%;
+    width: 100%;
+    float: left;
+    background: $main_background;
+    overflow: hidden;
+
+    .info {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+
+        h1 {
+            color: $text_color_main;
+            margin-top: -.2em;
+        }
+        h2 { color: $text_color_sub; }
+    }
+}
+
+h1.info_title { 
+    color: $text_color_main;
+    font-size: 1.7em; 
+}
+
+h2.info_sub {
+    color: $text_color_sub;
+    background: $selection_color;
+    padding: .2em;
+    display: inline-block;
+}
+
+.stars {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  box-shadow: $stars;
+  position: absolute;
+  left: 0;
+  top: 0;
+    
+    &:after {
+        content: "";
+        position: absolute;
+        top: 2000px;
+        width: 1px;
+        height: 1px;
+        background: white;
+        box-shadow: $stars;
+    }
+}
+
+.planet {
+    background: $planet_color;
+    width: $initial_planet_size;
+    height: $initial_planet_size;
+    margin: 25% auto 0;
+    border-radius: 50%;
+    border: 1px solid #000;
+    @include transition;
+
+    .cloud {
+        width: 35%;
+        height: 25%;
+        background-size: cover;
+        position: relative;
+        opacity: 1;
+        @include transition;
+
+        img { width: 100%; }
+    }
+
+    .row1 { 
+        left: 10%;
+        top: -1%;
+        width: 50%;
+        background-size: cover;
+    }
+    
+    .row2 { 
+        left: 30%;
+        top: 4%;
+        width: 76%;
+    }
+
+    .row3 {
+        top: 20%;
+        width: 40%;
+    }
+
+    .row4 {
+        top: 8%;
+        left: 53%;
+        width: 40%;
+    }
+
+    .continent {
+        width: 45%;
+        height: 40%;
+        position: fixed;
+        z-index: -1;
+        left: 26%;
+        top: 29%;
+        opacity: 0;
+        height: auto;
+        cursor: pointer;
+        @include transition;
+        .continent_pic { 
+            width: 100%; 
+        }
+    }
+
+    .game {
+        left: 33%;
+        top: -42%;
+        width: 45%;
+    }
+
+    .spinster {
+        left: 74%;
+        top: 48%;
+        width: 60%;
+    }
+
+    .about {
+        left: -15px;
+        top: 67%;
+        width: 48%;
+        cursor: default;
+    }
+}
+
+.links { display: none; }
+.link_activator {
+    cursor: pointer;
+}
+
+
+.continent_info {
+    display: none;
+    position: absolute;
+    max-width: 20em;
+
+}
+
+.game_info {
+    top: 13%;
+    left: 57%;
+}
+
+.about_info {
+    top: 60%;
+    left: 15%;
+    text-align: right;
+}
+
+.spinster_info {
+    top: 75%;
+    left: 68%;
+}
+
+.screen {
+    display: none;
+    position: absolute;
+    left: 43%;
+    top: 32%;
+    width: 19%;
+    outline: 1px solid transparent; /* Chrome jaggy edges fix */
+}
+
+.blinking { animation: blinker steps(1) 300ms infinite; }
+@keyframes blinker {  
+    0% { opacity: .7; }
+    50% { opacity: 0.0; }
+    100% { opacity: .7; }
+}
+
+@include laptop_res {
+    .planet {
+        margin: 20% auto 0;   
+    }
+
+    .about_info { left: 5%; }
+    .game_info {
+        left: 59%;
+        top: 3%;
+    }
+    .spinster_info {
+        left: 72%;
+        top: 65%;
+    }
+}
+
+.bands_container {
+    width: 30%;
+    height: 40%;
+    text-align: center;
+    margin: 20% auto 0 ;
+
+    .band_title {
+        margin-bottom: 1em;
+    }
+
+    ul { list-style: none; }
+    a  { 
+        text-decoration: none;
+        color: $text_color_main;
+
+        &:hover { color: $text_color_sub; }
+    }
+}
