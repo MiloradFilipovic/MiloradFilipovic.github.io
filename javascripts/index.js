@@ -9,6 +9,8 @@ var cloud_alpha_step = 1 / planet_scale_step_count;
 var current_continent_alpha = 0;
 var continent_alpha_step = 1 / planet_scale_step_count;
 
+var scaling = false;
+
 $(document).ready(function(e) {
 
     var main_container = $(".main_container");
@@ -23,7 +25,12 @@ $(document).ready(function(e) {
 
     $(window).on("touchstart", function(ev) {
         var e = ev.originalEvent;
-        $('.gesture_label span').text(e.touches);
+        $('.gesture_label span').text(e.touches.length);
+
+        if(e.touches.length == 2) {
+            scaling = true;
+        }
+
     });
 
     $(window).bind('mousewheel DOMMouseScroll', function(event){
