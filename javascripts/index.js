@@ -23,13 +23,13 @@ $(document).ready(function(e) {
         $('.gesture_test span').text('No');
     }
 
-    
+    // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
     $(window).on("touchstart", function(ev) {
         var e = ev.originalEvent;
 
         if(e.touches.length == 2) {
             scaling = true;
-            $('.gesture_label span').text(e.touches[0].x);
+            $('.gesture_label span').text('<' +  e.touches[0].x);
         }
     });
 
