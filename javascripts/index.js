@@ -38,16 +38,17 @@ $(document).ready(function(e) {
         $(window).on("touchmove", function(ev) {
             var e = ev.originalEvent;
             if(scaling) {
-                var dist =
-                    Math.sqrt(
-                        (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
-                        (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
-                    if(dist > current_finger_distance) {
-                        $('.gesture_label span').text("Zooming IN");
-                    }else {
-                        $('.gesture_label span').text("Zooming OUT");
-                    }
-                    current_finger_distance = dist;
+                // var dist =
+                //     Math.sqrt(
+                //         (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
+                //         (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
+                // if(dist > current_finger_distance) {
+                //     $('.gesture_label span').text("Zooming IN");
+                // }else {
+                //     $('.gesture_label span').text("Zooming OUT");
+                // }
+                // current_finger_distance = dist;
+                $('.gesture_label span').text(e.scale);
             }
         });
 
