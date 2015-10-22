@@ -6,6 +6,8 @@
     padding: 0;
 }
 
+html, body { height: 100%; }
+
 body {
     overflow: hidden;
     font-family: $font_main;

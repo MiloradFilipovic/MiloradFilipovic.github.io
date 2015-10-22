@@ -15,6 +15,11 @@ $(document).ready(function(e) {
     var planet = $(".planet");
     var info_div = $(".info");
 
+
+    $(window).bind('ontouchstart', function(e)) {
+        $('.gesture_label span').text(e.touches.length);
+    }
+
     $(window).bind('mousewheel DOMMouseScroll', function(event){
         // Mouse wheel up
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
