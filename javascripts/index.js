@@ -17,7 +17,7 @@ $(document).ready(function(e) {
     var planet = $(".planet");
     var info_div = $(".info");
 
-    if ('ontouchstart' in document.documentElement) {
+    if ('ontouchmove' in document.documentElement) {
       $('.gesture_test span').text('Yes');
     }else {
         $('.gesture_test span').text('No');
@@ -31,7 +31,7 @@ $(document).ready(function(e) {
         }
     });
 
-    $(window).on("ontouchmove", function(ev) {
+    $(window).on("touchmove", function(ev) {
         var e = ev.originalEvent;
         $('.gesture_label span').text('Moving [' + scaling + ']');
         if(scaling) {
