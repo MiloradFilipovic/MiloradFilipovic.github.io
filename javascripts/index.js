@@ -15,6 +15,11 @@ $(document).ready(function(e) {
     var planet = $(".planet");
     var info_div = $(".info");
 
+    if ('ontouchstart' in document.documentElement) {
+      $('.gesture_test span').text('Yes');
+    }else {
+        $('.gesture_test span').text('No');
+    }
 
     $(window).bind('ontouchstart', function(e) {
         $('.gesture_label span').text(e.touches.length);
