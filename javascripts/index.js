@@ -41,7 +41,7 @@ $(document).ready(function(e) {
                 }else {
                     $('.gesture_label span').text("Zooming OUT");
                 }
-                //current_finger_distance = dist;
+                current_finger_distance = dist;
             }
         });
 
@@ -49,7 +49,7 @@ $(document).ready(function(e) {
             var e = ev.originalEvent;
             if(scaling) {
                 scalling = false;
-                current_finger_distance - 0;
+                current_finger_distance = 0;
             }
         });
     }
