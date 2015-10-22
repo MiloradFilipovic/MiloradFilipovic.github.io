@@ -47,7 +47,7 @@ $(document).ready(function(e) {
                 }else {
                     $('.gesture_label span').text("Zooming OUT");
                 }
-                current_finger_distance = dist;
+                //current_finger_distance = dist;
             }
         });
 
