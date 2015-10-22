@@ -29,7 +29,7 @@ $(document).ready(function(e) {
 
         if(e.touches.length == 2) {
             scaling = true;
-            $('.gesture_label span').text('<' +  e.touches[0].x);
+            $('.gesture_label span').text('<' +  e.touches[0].pageX);
         }
     });
 
