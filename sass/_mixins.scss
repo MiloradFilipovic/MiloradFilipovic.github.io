@@ -20,6 +20,14 @@
 	}
 }
 
+@mixin mobile_res() {
+    @media screen 
+        and (min-width: 320px) 
+        and (max-width: 640px) {
+        @content;
+    }
+}
+
 @mixin selection($text, $background) {
     ::-moz-selection {
         color: $text;

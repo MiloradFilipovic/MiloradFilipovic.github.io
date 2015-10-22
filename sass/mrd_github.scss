@@ -201,22 +201,6 @@ h2.info_sub {
     100% { opacity: .7; }
 }
 
-@include laptop_res {
-    .planet {
-        margin: 20% auto 0;   
-    }
-
-    .about_info { left: 5%; }
-    .game_info {
-        left: 59%;
-        top: 3%;
-    }
-    .spinster_info {
-        left: 72%;
-        top: 65%;
-    }
-}
-
 .bands_container {
     width: 30%;
     height: 40%;
@@ -233,5 +217,27 @@ h2.info_sub {
         color: $text_color_main;
 
         &:hover { color: $text_color_sub; }
+    }
+}
+
+@include laptop_res {
+    .planet {
+        margin: 20% auto 0;   
+    }
+
+    .about_info { left: 5%; }
+    .game_info {
+        left: 59%;
+        top: 3%;
+    }
+    .spinster_info {
+        left: 72%;
+        top: 65%;
+    }
+}
+
+@include mobile_res {
+    .planet {
+        margin: 70% auto 0;   
     }
 }

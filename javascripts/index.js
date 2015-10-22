@@ -10,6 +10,7 @@ var current_continent_alpha = 0;
 var continent_alpha_step = 1 / planet_scale_step_count;
 
 var scaling = false;
+var current_finger_distance = 0;
 
 $(document).ready(function(e) {
 
@@ -24,9 +25,13 @@ $(document).ready(function(e) {
         // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
         $(window).on("touchstart", function(ev) {
             var e = ev.originalEvent;
-
             if(e.touches.length == 2) {
                 scaling = true;
+                var dist =
+                    Math.sqrt(
+                        (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
+                        (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
+                current_finger_distance = dist;
             }
         });
 
@@ -37,7 +42,12 @@ $(document).ready(function(e) {
                     Math.sqrt(
                         (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
                         (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
-                    $('.gesture_label span').text(dist);
+                    if(dist > current_finger_distance) {
+                        $('.gesture_label span').text("Zooming IN");
+                    }else {
+                        $('.gesture_label span').text("Zooming OUT");
+                    }
+                    current_finger_distance = dist;
             }
         });
 
