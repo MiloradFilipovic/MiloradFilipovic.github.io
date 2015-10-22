@@ -29,7 +29,6 @@ $(document).ready(function(e) {
 
         if(e.touches.length == 2) {
             scaling = true;
-            $('.gesture_label span').text('<' +  e.touches[0].pageX);
         }
     });
 
@@ -38,8 +37,9 @@ $(document).ready(function(e) {
         if(scaling) {
             var dist =
                 Math.sqrt(
-                    (e.touches[0].x-e.touches[1].x) * (e.touches[0].x-e.touches[1].x) +
-                    (e.touches[0].y-e.touches[1].y) * (e.touches[0].y-e.touches[1].y));
+                    (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
+                    (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
+                $('.gesture_label span').text(dist);
         }
     });
 
