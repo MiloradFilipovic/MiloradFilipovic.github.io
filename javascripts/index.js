@@ -33,12 +33,13 @@ $(document).ready(function(e) {
 
     $(window).on("ontouchmove", function(ev) {
         var e = ev.originalEvent;
+        $('.gesture_label span').text('Moving [' + scaling + ']');
         if(scaling) {
             var dist =
                 Math.sqrt(
                     (e.touches[0].x-e.touches[1].x) * (e.touches[0].x-e.touches[1].x) +
                     (e.touches[0].y-e.touches[1].y) * (e.touches[0].y-e.touches[1].y));
-            $('.gesture_label span').text(dist);
+            // $('.gesture_label span').text(dist);
         }
     });
 
