@@ -1,5 +1,3 @@
-$('.gesture_label').show();
-
 // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
 $(window).on("touchstart", function(ev) {
     var e = ev.originalEvent;

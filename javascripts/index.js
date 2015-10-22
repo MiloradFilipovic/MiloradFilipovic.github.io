@@ -19,6 +19,8 @@ $(document).ready(function(e) {
 
     // If touch events are supported, include mobile scripts
     if ('touchstart' in document.documentElement) {
+        $('.gesture_label').show();
+        
         var newScript = $('<script></script>');
         newScript.attr('type', 'text/javascript');
         newScript.attr('src', 'javascripts/touch_script.js');
