@@ -21,8 +21,9 @@ $(document).ready(function(e) {
         $('.gesture_test span').text('No');
     }
 
-    $(window).on('ontouchstart', function(e) {
-        $('.gesture_label span').text(e.touches.length);
+    $(window).on("touchstart", function(ev) {
+        var e = ev.originalEvent;
+        $('.gesture_label span').text(e.touches);
     });
 
     $(window).bind('mousewheel DOMMouseScroll', function(event){
