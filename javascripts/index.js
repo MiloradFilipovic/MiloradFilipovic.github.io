@@ -21,7 +21,7 @@ $(document).ready(function(e) {
         $('.gesture_test span').text('No');
     }
 
-    $(window).bind('ontouchstart', function(e) {
+    $(window).on('ontouchstart', function(e) {
         $('.gesture_label span').text(e.touches.length);
     });
 
