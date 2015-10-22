@@ -18,7 +18,7 @@ $(document).ready(function(e) {
     var info_div = $(".info");
 
     // If touch events are supported, activate gesture scripts
-    if ('touchstart' in document.documentElement) {
+    if ('ontouchstart' in document.documentElement) {
         $('.gesture_label').show();
 
         // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
