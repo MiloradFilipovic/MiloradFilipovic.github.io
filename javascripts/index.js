@@ -23,11 +23,13 @@ $(document).ready(function(e) {
         $('.gesture_test span').text('No');
     }
 
+    
     $(window).on("touchstart", function(ev) {
         var e = ev.originalEvent;
 
         if(e.touches.length == 2) {
             scaling = true;
+            $('.gesture_label span').text(e.touches[0].x);
         }
     });
 
@@ -38,7 +40,6 @@ $(document).ready(function(e) {
                 Math.sqrt(
                     (e.touches[0].x-e.touches[1].x) * (e.touches[0].x-e.touches[1].x) +
                     (e.touches[0].y-e.touches[1].y) * (e.touches[0].y-e.touches[1].y));
-            $('.gesture_label span').text(ev.touches[0].x);
         }
     });
 
