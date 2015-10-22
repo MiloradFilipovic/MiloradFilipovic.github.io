@@ -16,9 +16,9 @@ $(document).ready(function(e) {
     var info_div = $(".info");
 
 
-    $(window).bind('ontouchstart', function(e)) {
+    $(window).bind('ontouchstart', function(e) {
         $('.gesture_label span').text(e.touches.length);
-    }
+    });
 
     $(window).bind('mousewheel DOMMouseScroll', function(event){
         // Mouse wheel up
