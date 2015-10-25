@@ -151,6 +151,7 @@ h2.info_sub {
             left: -11%;
             top: 69%;
             width: 25px;
+            @include transition;
         }
     }
 }
@@ -187,18 +188,54 @@ h2.info_sub {
 .screen {
     display: none;
     position: absolute;
-    left: 43%;
+    left: 44%;
     top: 31%;
-    width: 19%;
+    width: 18%;
+    z-index: 999;
+    height: 11%;
     outline: 1px solid transparent; /* Chrome jaggy edges fix */
+    background-image: url("../images/screen.png");
+    background-size: contain;
 }
 
-.blinking_beam { animation: blinker steps(1) 1000ms infinite; }
-.blinking { animation: blinker steps(1) 300ms infinite; }
+.blinking_beam { animation: pulse 1500ms infinite; }
+.blinking { animation: blinker steps(1) 200ms infinite; }
+.s1_ani { animation: screen1_animation steps(1) 400ms infinite; }
+.s2_ani { animation: screen2_animation steps(1) 400ms infinite; }
+.s3_ani { animation: screen3_animation steps(1) 400ms infinite; }
+
 @keyframes blinker {  
     0% { opacity: .7; }
-    50% { opacity: 0.0; }
-    100% { opacity: .7; }
+    30% { opacity: .3; }
+    60% { opacity: .7; }
+    100% { opacity: .3; }
+}
+
+@keyframes pulse {  
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes screen1_animation {
+    0% { opacity: .7; }
+    30% { opacity: 0; }
+    60% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes screen2_animation {
+    0% { opacity: 0; }
+    30% { opacity: .7; }
+    60% { opacity: 0; }
+    100% { opacity: 0; }   
+}
+
+@keyframes screen3_animation {
+    0% { opacity: 0; }
+    30% { opacity: 0; }
+    60% { opacity: .7; }
+    100% { opacity: 0; }   
 }
 
 .bands_container {

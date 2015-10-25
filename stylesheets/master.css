@@ -195,6 +195,7 @@ button {
 }
 
 .resultSpan {
+    display: inline-block;
     float: left;
     font-size: 4em;
     color: #808080;

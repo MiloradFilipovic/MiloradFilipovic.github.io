@@ -59,11 +59,7 @@ $(document).ready(function(e) {
         if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
             // Zoom the planet up to 4X
             if(current_planet_scale <= max_planet_scale) {
-                planet.css({
-                    '-moz-transform': 'scale('+ current_planet_scale + ')', 
-                    '-webkit-transform': 'scale('+ current_planet_scale + ')',
-                    '-o-transform': 'scale('+ current_planet_scale + ')'
-                });
+                scale(planet, current_planet_scale);
                 if(current_cloud_alpha > 0) {
                     current_cloud_alpha -= cloud_alpha_step;
                     $(".cloud").css("opacity", current_cloud_alpha);
@@ -77,12 +73,7 @@ $(document).ready(function(e) {
         }else { // Mouse wheel down
             // Zoom out down to original size
             if(current_planet_scale >= 1) {
-
-                planet.css({
-                    '-moz-transform': 'scale('+ current_planet_scale + ')', 
-                    '-webkit-transform': 'scale('+ current_planet_scale + ')',
-                    '-o-transform': 'scale('+ current_planet_scale + ')'
-                });
+                scale(planet, current_planet_scale);
                 if(current_cloud_alpha < 1) {
                     current_cloud_alpha += cloud_alpha_step;
                     $(".cloud").css("opacity", current_cloud_alpha);
@@ -103,7 +94,10 @@ $(document).ready(function(e) {
             var activates = $(this).attr('data-activates');
             $('.' + activates).stop().fadeIn();
             if($(this).hasClass('game')) {
-                $('.screen').fadeIn().addClass('blinking');
+                $('.screens').fadeIn().addClass('blinking');
+                $('.screen1').fadeIn().addClass('s1_ani');
+                $('.screen2').fadeIn().addClass('s2_ani');
+                $('.screen3').fadeIn().addClass('s3_ani');
             }else if($(this).hasClass('about')) {
                 $('.beam').removeClass('blinking_beam');
             }
@@ -111,11 +105,22 @@ $(document).ready(function(e) {
     }, function(e) {
         var activates = $(this).attr('data-activates');
         $('.' + activates).stop().fadeOut();
-        $('.screen').hide().fadeOut('blinking');
+        $('.screens').hide().removeClass('blinking');
+        $('.screen1').hide().removeClass('s1_ani');
+        $('.screen2').hide().removeClass('s2_ani');
+        $('.screen3').hide().removeClass('s3_ani');
         $('.beam').addClass('blinking_beam');
     });
 
 });
+
+function scale(element, value) {
+    element.css({
+        '-moz-transform': 'scale('+ current_planet_scale + ')', 
+        '-webkit-transform': 'scale('+ current_planet_scale + ')',
+        '-o-transform': 'scale('+ current_planet_scale + ')'
+    });
+}
 
 function get_distance(e) {
     var dist =
