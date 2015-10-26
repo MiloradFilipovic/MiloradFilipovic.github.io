@@ -188,7 +188,7 @@ h2.info_sub {
 .screen {
     display: none;
     position: absolute;
-    left: 44%;
+    left: 43.2%;
     top: 31%;
     width: 18%;
     z-index: 999;
@@ -219,22 +219,22 @@ h2.info_sub {
 
 @keyframes screen1_animation {
     0% { opacity: .7; }
-    30% { opacity: 0; }
-    60% { opacity: 0; }
+    20% { opacity: 0; }
+    80% { opacity: 0; }
     100% { opacity: 0; }
 }
 
 @keyframes screen2_animation {
     0% { opacity: 0; }
-    30% { opacity: .7; }
-    60% { opacity: 0; }
+    20% { opacity: .7; }
+    80% { opacity: 0; }
     100% { opacity: 0; }   
 }
 
 @keyframes screen3_animation {
     0% { opacity: 0; }
-    30% { opacity: 0; }
-    60% { opacity: .7; }
+    20% { opacity: 0; }
+    80% { opacity: .7; }
     100% { opacity: 0; }   
 }
 
