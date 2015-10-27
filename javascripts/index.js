@@ -41,7 +41,13 @@ $(document).ready(function(e) {
                 // }else {
                 //     $('.gesture_label span').text("Zooming OUT");
                 // }
-                $('.gesture_label span').text(dist + "[ " + current_finger_distance + "]");
+                if(dist == current_finger_distance) {
+                    $('.gesture_label span').text("ISTO");
+                }else if(dist > current_finger_distance) {
+                    $('.gesture_label span').text("VECE");
+                }else if(dist < current_finger_distance) {
+                    $('.gesture_label span').text("MANJE");
+                }
                 current_finger_distance = dist;
             }
         });
