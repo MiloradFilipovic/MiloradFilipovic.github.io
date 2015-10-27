@@ -22,36 +22,45 @@ $(document).ready(function(e) {
     if ('ontouchstart' in document.documentElement) {
         $('.gesture_label').show();
 
+        var hammertime = new Hammer(main_container);
+        hammertime.get('pinch').set({ enable: true });
+        hammertime.on('pinchin', function(ev) {
+            $('.gesture_label span').text("IN");
+        });
+        hammertime.on('pinchout', function(ev) {
+            $('.gesture_label span').text("OUT");
+        });
+
         // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
-        $(window).on("touchstart", function(ev) {
-            var e = ev.originalEvent;
-            if(e.touches.length == 2) {
-                scaling = true;
-                var dist = get_distance(e);
-                current_finger_distance = dist;
-            }
-        });
+        // $(window).on("touchstart", function(ev) {
+        //     var e = ev.originalEvent;
+        //     if(e.touches.length == 2) {
+        //         scaling = true;
+        //         var dist = get_distance(e);
+        //         current_finger_distance = dist;
+        //     }
+        // });
 
-        $(window).on("touchmove", function(ev) {
-            var e = ev.originalEvent;
-            if(scaling) {
-                var dist = get_distance(e);
-                if(dist > current_finger_distance) {
-                    $('.gesture_label span').text("Zooming IN");
-                }else {
-                    $('.gesture_label span').text("Zooming OUT");
-                }
-                current_finger_distance = dist;
-            }
-        });
+        // $(window).on("touchmove", function(ev) {
+        //     var e = ev.originalEvent;
+        //     if(scaling) {
+        //         var dist = get_distance(e);
+        //         if(dist > current_finger_distance) {
+        //             $('.gesture_label span').text("Zooming IN");
+        //         }else {
+        //             $('.gesture_label span').text("Zooming OUT");
+        //         }
+        //         current_finger_distance = dist;
+        //     }
+        // });
 
-        $(window).on("touchend", function(ev) {
-            var e = ev.originalEvent;
-            if(scaling) {
-                scalling = false;
-                current_finger_distance = 0;
-            }
-        });
+        // $(window).on("touchend", function(ev) {
+        //     var e = ev.originalEvent;
+        //     if(scaling) {
+        //         scalling = false;
+        //         current_finger_distance = 0;
+        //     }
+        // });
     }
 
     $(window).bind('mousewheel DOMMouseScroll', function(event){
