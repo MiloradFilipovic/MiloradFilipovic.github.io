@@ -121,7 +121,7 @@ h2.info_sub {
     .continent {
         width: 45%;
         height: 40%;
-        position: fixed;
+        position: absolute;
         z-index: -1;
         left: 26%;
         top: 29%;
@@ -279,6 +279,18 @@ h2.info_sub {
 
 @include mobile_res {
     .planet {
+        width: $initial_planet_small;
+        height: $initial_planet_small;
         margin: 70% auto 0;   
+    }
+
+    .planet .about {
+        left: -11px;
+    }
+
+    .planet .about .beam {
+        left: -5px;
+        top: 27px;
+        width: 17px;
     }
 }

@@ -38,8 +38,37 @@ $(document).ready(function(e) {
                 var dist = get_distance(e);
                 if(dist > current_finger_distance) {
                     $('.gesture_label span').text("Zooming IN");
+                    if(current_planet_scale <= max_planet_scale) {
+                        scale(planet, current_planet_scale);
+                        scale(info_div, current_planet_scale);
+                        if(current_cloud_alpha > 0) {
+                            current_cloud_alpha -= cloud_alpha_step;
+                            $(".cloud").css("opacity", current_cloud_alpha);
+                            info_div.css("opacity", current_cloud_alpha);
+                        }
+                        if(current_continent_alpha < 1) {
+                            current_continent_alpha += continent_alpha_step;
+                            $(".continent").css("opacity", current_continent_alpha);
+                        }
+                        current_planet_scale += planet_scale_step;
+                    }
                 }else {
                     $('.gesture_label span').text("Zooming OUT");
+                    if(current_planet_scale >= 1) {
+                        scale(planet, current_planet_scale);
+                        scale(info_div, current_planet_scale);
+                        if(current_cloud_alpha < 1) {
+                            current_cloud_alpha += cloud_alpha_step;
+                            $(".cloud").css("opacity", current_cloud_alpha);
+                            info_div.css("opacity", current_cloud_alpha);
+                        }
+
+                        if(current_continent_alpha >= 0) {
+                            current_continent_alpha -= continent_alpha_step;
+                            $(".continent").css("opacity", current_continent_alpha);
+                        }
+                        current_planet_scale -= planet_scale_step;
+                    }
                 }
                 // current_finger_distance = dist;
             }
