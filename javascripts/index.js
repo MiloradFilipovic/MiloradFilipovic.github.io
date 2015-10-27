@@ -130,7 +130,7 @@ $(document).ready(function(e) {
             if(!target_el.is(':visible')) {
                 e.preventDefault();
             }
-        }
+        });
 
 
         $('.continent').bind('touchstart touchend', function(e) {
