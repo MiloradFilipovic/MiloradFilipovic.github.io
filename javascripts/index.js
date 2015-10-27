@@ -138,7 +138,8 @@ $(document).ready(function(e) {
             if($(this).css('opacity') == 1) {
                 var activates = $(this).attr('data-activates');
                 var target_el = $('.' + activates);
-                if(target_el.is(':visible')) {
+                if(!target_el.is(':visible')) {
+                    target_el.fadeIn();
                     if($(this).hasClass('game')) {
                         $('.screens').fadeIn().addClass('blinking');
                         $('.screen1').fadeIn().addClass('s1_ani');
