@@ -124,6 +124,15 @@ $(document).ready(function(e) {
     });
 
     if(touch_ready) {
+        $(".hoverLink").bind('touchstart touchend', function(e) {
+            var activates = $(this).find('.continent').attr('data-activates');
+            var target_el = $('.' + activates);
+            if(!target_el.is(':visible')) {
+                e.preventDefault();
+            }
+        }
+
+
         $('.continent').bind('touchstart touchend', function(e) {
             e.preventDefault();
             if($(this).css('opacity') == 1) {
