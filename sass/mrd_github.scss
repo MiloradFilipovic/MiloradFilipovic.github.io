@@ -293,4 +293,31 @@ h2.info_sub {
         top: 27px;
         width: 17px;
     }
+
+    .about_info {
+        top: 72%;
+        h1 { 
+            float: left; 
+            text-align: left;
+        }
+        h2 { 
+            float: left;
+            clear: right;
+            text-align: left; 
+        }
+    }
+
+    .spinster_info {
+        left: 41%;
+        top: 70%;
+
+        h1 { text-align: right; }
+    }
+
+    .screen {
+        left: 16px;
+        top: 18px;
+        width: 6px;
+        height: 6px;
+    }
 }

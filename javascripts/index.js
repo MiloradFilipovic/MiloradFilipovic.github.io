@@ -11,6 +11,7 @@ var continent_alpha_step = 1 / planet_scale_step_count;
 
 var scaling = false;
 var current_finger_distance = 0;
+var touch_ready = false;
 
 $(document).ready(function(e) {
 
@@ -20,10 +21,10 @@ $(document).ready(function(e) {
 
     // If touch events are supported, activate gesture scripts
     if ('ontouchstart' in document.documentElement) {
-        $('.gesture_label').show();
 
         // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
         $(window).on("touchstart", function(ev) {
+            touch_ready = true;
             var e = ev.originalEvent;
             if(e.touches.length == 2) {
                 scaling = true;
@@ -122,29 +123,56 @@ $(document).ready(function(e) {
         }
     });
 
-    // CONTINENT HOVER
-    $('.continent').hover(function(e) {
-        if($(this).css('opacity') == 1) {
-            var activates = $(this).attr('data-activates');
-            $('.' + activates).stop().fadeIn();
-            if($(this).hasClass('game')) {
-                $('.screens').fadeIn().addClass('blinking');
-                $('.screen1').fadeIn().addClass('s1_ani');
-                $('.screen2').fadeIn().addClass('s2_ani');
-                $('.screen3').fadeIn().addClass('s3_ani');
-            }else if($(this).hasClass('about')) {
-                $('.beam').removeClass('blinking_beam');
+    if(touch_ready) {
+        $('.continent').bind('touchstart touchend', function(e) {
+            e.preventDefault();
+            if($(this).css('opacity') == 1) {
+                var activates = $(this).attr('data-activates');
+                var target_el = $('.' + activates);
+                if(target_el.is(':visible')) {
+                    if($(this).hasClass('game')) {
+                        $('.screens').fadeIn().addClass('blinking');
+                        $('.screen1').fadeIn().addClass('s1_ani');
+                        $('.screen2').fadeIn().addClass('s2_ani');
+                        $('.screen3').fadeIn().addClass('s3_ani');
+                    }else if($(this).hasClass('about')) {
+                        $('.beam').removeClass('blinking_beam');
+                    }
+                }else {
+                    target_el.fadeOut();
+                    $('.screens').hide().removeClass('blinking');
+                    $('.screen1').hide().removeClass('s1_ani');
+                    $('.screen2').hide().removeClass('s2_ani');
+                    $('.screen3').hide().removeClass('s3_ani');
+                    $('.beam').addClass('blinking_beam');
+                }
             }
-        }
-    }, function(e) {
-        var activates = $(this).attr('data-activates');
-        $('.' + activates).stop().fadeOut();
-        $('.screens').hide().removeClass('blinking');
-        $('.screen1').hide().removeClass('s1_ani');
-        $('.screen2').hide().removeClass('s2_ani');
-        $('.screen3').hide().removeClass('s3_ani');
-        $('.beam').addClass('blinking_beam');
-    });
+        });
+    }else {
+        // CONTINENT HOVER
+        $('.continent').hover(function(e) {
+            if($(this).css('opacity') == 1) {
+                var activates = $(this).attr('data-activates');
+                $('.' + activates).stop().fadeIn();
+                if($(this).hasClass('game')) {
+                    $('.screens').fadeIn().addClass('blinking');
+                    $('.screen1').fadeIn().addClass('s1_ani');
+                    $('.screen2').fadeIn().addClass('s2_ani');
+                    $('.screen3').fadeIn().addClass('s3_ani');
+                }else if($(this).hasClass('about')) {
+                    $('.beam').removeClass('blinking_beam');
+                }
+            }
+        }, function(e) {
+            var activates = $(this).attr('data-activates');
+            $('.' + activates).stop().fadeOut();
+            $('.screens').hide().removeClass('blinking');
+            $('.screen1').hide().removeClass('s1_ani');
+            $('.screen2').hide().removeClass('s2_ani');
+            $('.screen3').hide().removeClass('s3_ani');
+            $('.beam').addClass('blinking_beam');
+        });
+    }
 
 });
 
