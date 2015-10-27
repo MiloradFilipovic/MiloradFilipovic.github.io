@@ -19,10 +19,17 @@ $(document).ready(function(e) {
     var planet = $(".planet");
     var info_div = $(".info");
 
+    var current_info_top = info_div.offset().top;
+    var final_info_top = -62;
+    var info_top_steps = current_info_top - final_info_top;
+    var info_tranistion_step = info_top_steps / planet_scale_step_count;
+
     // If touch events are supported, activate gesture scripts
     if ('ontouchstart' in document.documentElement) {
+        $(".hoverLink").bind('touchstart touchend', function(e) {
+            e.preventDefault();
+        });
 
-        // Ovde uzmem originalnu udaljenost i gledam na touchmove da li se smanjuje ili povecava
         $(window).on("touchstart", function(ev) {
             touch_ready = true;
             var e = ev.originalEvent;
@@ -101,6 +108,8 @@ $(document).ready(function(e) {
                     current_continent_alpha += continent_alpha_step;
                     $(".continent").css("opacity", current_continent_alpha);
                 }
+                current_info_top -= info_tranistion_step;
+                info_div.css("top", current_info_top);
                 current_planet_scale += planet_scale_step;
             }
         }else { // Mouse wheel down
@@ -113,24 +122,19 @@ $(document).ready(function(e) {
                     $(".cloud").css("opacity", current_cloud_alpha);
                     info_div.css("opacity", current_cloud_alpha);
                 }
-
                 if(current_continent_alpha >= 0) {
                     current_continent_alpha -= continent_alpha_step;
                     $(".continent").css("opacity", current_continent_alpha);
                 }
+                current_info_top += info_tranistion_step;
+                info_div.css("top", current_info_top);
                 current_planet_scale -= planet_scale_step;
             }
         }
     });
 
     if(touch_ready) {
-        $(".hoverLink").bind('touchstart touchend', function(e) {
-            e.preventDefault();
-        });
-
-
         $('.continent').bind('touchstart touchend', function(e) {
-            e.preventDefault();
             if($(this).css('opacity') == 1) {
                 var activates = $(this).attr('data-activates');
                 var target_el = $('.' + activates);
