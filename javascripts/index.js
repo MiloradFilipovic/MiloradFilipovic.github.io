@@ -24,11 +24,12 @@ $(document).ready(function(e) {
     var info_top_steps = current_info_top - final_info_top;
     var info_tranistion_step = info_top_steps / planet_scale_step_count;
 
+
     // If touch events are supported, activate gesture scripts
     if ('ontouchstart' in document.documentElement) {
-        $(".hoverLink").bind('touchstart touchend', function(e) {
+        $(".hoverLink").bind('touchstart', function(e) {
             e.preventDefault();
-            alert("TAP!");
+            console.log("TAP!");
             var tapped_continent = $(this).closest(".continent");
             if($(this).css('opacity') == 1) {
                 var activates = tapped_continent.attr('data-activates');
