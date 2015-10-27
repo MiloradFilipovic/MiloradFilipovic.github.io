@@ -28,6 +28,30 @@ $(document).ready(function(e) {
     if ('ontouchstart' in document.documentElement) {
         $(".hoverLink").bind('touchstart touchend', function(e) {
             e.preventDefault();
+            alert("TAP!");
+            var tapped_continent = $(this).closest(".continent");
+            if($(this).css('opacity') == 1) {
+                var activates = tapped_continent.attr('data-activates');
+                var target_el = $('.' + activates);
+                if(!target_el.is(':visible')) {
+                    target_el.fadeIn();
+                    if(tapped_continent.hasClass('game')) {
+                        $('.screens').fadeIn().addClass('blinking');
+                        $('.screen1').fadeIn().addClass('s1_ani');
+                        $('.screen2').fadeIn().addClass('s2_ani');
+                        $('.screen3').fadeIn().addClass('s3_ani');
+                    }else if(tapped_continent.hasClass('about')) {
+                        $('.beam').removeClass('blinking_beam');
+                    }
+                }else {
+                    target_el.fadeOut();
+                    $('.screens').hide().removeClass('blinking');
+                    $('.screen1').hide().removeClass('s1_ani');
+                    $('.screen2').hide().removeClass('s2_ani');
+                    $('.screen3').hide().removeClass('s3_ani');
+                    $('.beam').addClass('blinking_beam');
+                }
+            }
         });
 
         $(window).on("touchstart", function(ev) {
@@ -133,56 +157,29 @@ $(document).ready(function(e) {
         }
     });
 
-    if(touch_ready) {
-        $('.continent').bind('touchstart touchend', function(e) {
-            if($(this).css('opacity') == 1) {
-                var activates = $(this).attr('data-activates');
-                var target_el = $('.' + activates);
-                if(!target_el.is(':visible')) {
-                    target_el.fadeIn();
-                    if($(this).hasClass('game')) {
-                        $('.screens').fadeIn().addClass('blinking');
-                        $('.screen1').fadeIn().addClass('s1_ani');
-                        $('.screen2').fadeIn().addClass('s2_ani');
-                        $('.screen3').fadeIn().addClass('s3_ani');
-                    }else if($(this).hasClass('about')) {
-                        $('.beam').removeClass('blinking_beam');
-                    }
-                }else {
-                    target_el.fadeOut();
-                    $('.screens').hide().removeClass('blinking');
-                    $('.screen1').hide().removeClass('s1_ani');
-                    $('.screen2').hide().removeClass('s2_ani');
-                    $('.screen3').hide().removeClass('s3_ani');
-                    $('.beam').addClass('blinking_beam');
-                }
-            }
-        });
-    }else {
-        // CONTINENT HOVER
-        $('.continent').hover(function(e) {
-            if($(this).css('opacity') == 1) {
-                var activates = $(this).attr('data-activates');
-                $('.' + activates).stop().fadeIn();
-                if($(this).hasClass('game')) {
-                    $('.screens').fadeIn().addClass('blinking');
-                    $('.screen1').fadeIn().addClass('s1_ani');
-                    $('.screen2').fadeIn().addClass('s2_ani');
-                    $('.screen3').fadeIn().addClass('s3_ani');
-                }else if($(this).hasClass('about')) {
-                    $('.beam').removeClass('blinking_beam');
-                }
-            }
-        }, function(e) {
+    // CONTINENT HOVER
+    $('.continent').hover(function(e) {
+        if($(this).css('opacity') == 1) {
             var activates = $(this).attr('data-activates');
-            $('.' + activates).stop().fadeOut();
-            $('.screens').hide().removeClass('blinking');
-            $('.screen1').hide().removeClass('s1_ani');
-            $('.screen2').hide().removeClass('s2_ani');
-            $('.screen3').hide().removeClass('s3_ani');
-            $('.beam').addClass('blinking_beam');
-        });
-    }
+            $('.' + activates).stop().fadeIn();
+            if($(this).hasClass('game')) {
+                $('.screens').fadeIn().addClass('blinking');
+                $('.screen1').fadeIn().addClass('s1_ani');
+                $('.screen2').fadeIn().addClass('s2_ani');
+                $('.screen3').fadeIn().addClass('s3_ani');
+            }else if($(this).hasClass('about')) {
+                $('.beam').removeClass('blinking_beam');
+            }
+        }
+    }, function(e) {
+        var activates = $(this).attr('data-activates');
+        $('.' + activates).stop().fadeOut();
+        $('.screens').hide().removeClass('blinking');
+        $('.screen1').hide().removeClass('s1_ani');
+        $('.screen2').hide().removeClass('s2_ani');
+        $('.screen3').hide().removeClass('s3_ani');
+        $('.beam').addClass('blinking_beam');
+    });
 
 });
 

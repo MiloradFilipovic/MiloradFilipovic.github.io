@@ -132,6 +132,12 @@ h2.info_sub {
         .continent_pic { 
             width: 100%; 
         }
+
+        .hoverLink {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
     }
 
     .game {
@@ -166,12 +172,10 @@ h2.info_sub {
     cursor: pointer;
 }
 
-
 .continent_info {
     display: none;
     position: absolute;
     max-width: 20em;
-
 }
 
 .game_info {
