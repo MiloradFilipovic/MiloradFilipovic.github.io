@@ -48,7 +48,7 @@ $(document).ready(function(e) {
                 }else if(dist < current_finger_distance) {
                     $('.gesture_label span').text("MANJE");
                 }
-                current_finger_distance = dist;
+                // current_finger_distance = dist;
             }
         });
 
