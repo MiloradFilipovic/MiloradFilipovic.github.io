@@ -36,17 +36,10 @@ $(document).ready(function(e) {
             var e = ev.originalEvent;
             if(scaling) {
                 var dist = get_distance(e);
-                // if(dist > current_finger_distance) {
-                //     $('.gesture_label span').text("Zooming IN");
-                // }else {
-                //     $('.gesture_label span').text("Zooming OUT");
-                // }
-                if(dist == current_finger_distance) {
-                    $('.gesture_label span').text("ISTO");
-                }else if(dist > current_finger_distance) {
-                    $('.gesture_label span').text("VECE");
-                }else if(dist < current_finger_distance) {
-                    $('.gesture_label span').text("MANJE");
+                if(dist > current_finger_distance) {
+                    $('.gesture_label span').text("Zooming IN");
+                }else {
+                    $('.gesture_label span').text("Zooming OUT");
                 }
                 // current_finger_distance = dist;
             }
