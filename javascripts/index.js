@@ -20,6 +20,7 @@ $(document).ready(function(e) {
     var info_div = $(".info");
 
     var current_info_top = info_div.offset().top;
+    var current_info_left = info_div.offset().left;
     var final_info_top = -62;
     var info_top_steps = current_info_top - final_info_top;
     var info_tranistion_step = info_top_steps / planet_scale_step_count;
@@ -83,6 +84,12 @@ $(document).ready(function(e) {
                             current_continent_alpha += continent_alpha_step;
                             $(".continent").css("opacity", current_continent_alpha);
                         }
+                        current_info_top -= info_tranistion_step;
+                        current_info_left -= info_tranistion_step * 4;
+                        info_div.css("left", current_info_left);
+                        info_div.css("top", current_info_top);
+                        current_planet_scale += planet_scale_step;
+
                         current_planet_scale += planet_scale_step;
                     }
                 }else {
@@ -100,6 +107,10 @@ $(document).ready(function(e) {
                             current_continent_alpha -= continent_alpha_step;
                             $(".continent").css("opacity", current_continent_alpha);
                         }
+                        current_info_top += info_tranistion_step;
+                        current_info_left += info_tranistion_step * 4;
+                        info_div.css("left", current_info_left);
+                        info_div.css("top", current_info_top);
                         current_planet_scale -= planet_scale_step;
                     }
                 }
@@ -134,6 +145,8 @@ $(document).ready(function(e) {
                     $(".continent").css("opacity", current_continent_alpha);
                 }
                 current_info_top -= info_tranistion_step;
+                current_info_left -= info_tranistion_step * 4;
+                info_div.css("left", current_info_left);
                 info_div.css("top", current_info_top);
                 current_planet_scale += planet_scale_step;
             }
@@ -152,6 +165,8 @@ $(document).ready(function(e) {
                     $(".continent").css("opacity", current_continent_alpha);
                 }
                 current_info_top += info_tranistion_step;
+                current_info_left += info_tranistion_step * 4;
+                info_div.css("left", current_info_left);
                 info_div.css("top", current_info_top);
                 current_planet_scale -= planet_scale_step;
             }
