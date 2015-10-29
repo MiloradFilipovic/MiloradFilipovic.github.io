@@ -1,30 +1,31 @@
-var current_planet_scale = 1;
-var max_planet_scale = 3;
-var planet_scale_step = .2;
-var planet_scale_step_count = (max_planet_scale - 1) / planet_scale_step;
-
-var current_cloud_alpha = 1;
-var cloud_alpha_step = 1 / planet_scale_step_count;
-
-var current_continent_alpha = 0;
-var continent_alpha_step = 1 / planet_scale_step_count;
-
-var scaling = false;
-var current_finger_distance = 0;
-var touch_ready = false;
-
 $(document).ready(function(e) {
-
     var main_container = $(".main_container");
     var planet = $(".planet");
     var info_div = $(".info");
 
+    var current_planet_scale = 1;
+    var max_planet_scale = 3;
+    var planet_scale_step = .2;
+    var planet_scale_step_count = (max_planet_scale - 1) / planet_scale_step;
+
+    var current_cloud_alpha = 1;
+    var cloud_alpha_step = 1 / planet_scale_step_count;
+
+    var current_continent_alpha = 0;
+    var continent_alpha_step = 1 / planet_scale_step_count;
+
+    var scaling = false;
+    var current_finger_distance = 0;
+    var touch_ready = false;
+
     var current_info_top = info_div.offset().top;
     var current_info_left = info_div.offset().left;
     var final_info_top = -62;
+    var final_info_left = -335;
     var info_top_steps = current_info_top - final_info_top;
-    var info_tranistion_step = info_top_steps / planet_scale_step_count;
-
+    var info_left_steps = current_info_left - final_info_left;
+    var info_top_step = info_top_steps / planet_scale_step_count;
+    var info_left_step = info_left_steps / planet_scale_step_count;
 
     // If touch events are supported, activate gesture scripts
     if ('ontouchstart' in document.documentElement) {
@@ -84,8 +85,8 @@ $(document).ready(function(e) {
                             current_continent_alpha += continent_alpha_step;
                             $(".continent").css("opacity", current_continent_alpha);
                         }
-                        current_info_top -= info_tranistion_step;
-                        current_info_left -= info_tranistion_step * 4;
+                        current_info_top -= info_top_step;
+                        current_info_left -= info_left_step;
                         info_div.css("left", current_info_left);
                         info_div.css("top", current_info_top);
                         current_planet_scale += planet_scale_step;
@@ -107,8 +108,8 @@ $(document).ready(function(e) {
                             current_continent_alpha -= continent_alpha_step;
                             $(".continent").css("opacity", current_continent_alpha);
                         }
-                        current_info_top += info_tranistion_step;
-                        current_info_left += info_tranistion_step * 4;
+                        current_info_top += info_top_step;
+                        current_info_left += info_left_step;
                         info_div.css("left", current_info_left);
                         info_div.css("top", current_info_top);
                         current_planet_scale -= planet_scale_step;
@@ -144,8 +145,8 @@ $(document).ready(function(e) {
                     current_continent_alpha += continent_alpha_step;
                     $(".continent").css("opacity", current_continent_alpha);
                 }
-                current_info_top -= info_tranistion_step;
-                current_info_left -= info_tranistion_step * 4;
+                current_info_top -= info_top_step;
+                current_info_left -= info_left_step;
                 info_div.css("left", current_info_left);
                 info_div.css("top", current_info_top);
                 current_planet_scale += planet_scale_step;
@@ -164,8 +165,8 @@ $(document).ready(function(e) {
                     current_continent_alpha -= continent_alpha_step;
                     $(".continent").css("opacity", current_continent_alpha);
                 }
-                current_info_top += info_tranistion_step;
-                current_info_left += info_tranistion_step * 4;
+                current_info_top += info_top_step;
+                current_info_left += info_left_step;
                 info_div.css("left", current_info_left);
                 info_div.css("top", current_info_top);
                 current_planet_scale -= planet_scale_step;
@@ -197,20 +198,20 @@ $(document).ready(function(e) {
         $('.beam').addClass('blinking_beam');
     });
 
-});
 
-function scale(element, value) {
-    element.css({
-        '-moz-transform': 'scale('+ current_planet_scale + ')', 
-        '-webkit-transform': 'scale('+ current_planet_scale + ')',
-        '-o-transform': 'scale('+ current_planet_scale + ')'
-    });
-}
+    function scale(element, value) {
+        element.css({
+            '-moz-transform': 'scale('+ current_planet_scale + ')', 
+            '-webkit-transform': 'scale('+ current_planet_scale + ')',
+            '-o-transform': 'scale('+ current_planet_scale + ')'
+        });
+    }
 
-function get_distance(e) {
-    var dist =
-        Math.sqrt(
-            (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
-            (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
-    return dist;
-}
+    function get_distance(e) {
+        var dist =
+            Math.sqrt(
+                (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
+                (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
+        return dist;
+    }
+}); // doc.ready end
