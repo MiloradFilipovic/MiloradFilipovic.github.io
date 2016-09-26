@@ -30,16 +30,15 @@ $(document).ready(function(e) {
 
         CSSCode.empty();
         CSSCode.multiline(  ".spinnable{ \n" +
-                            "\t-moz-transition: all 0.1s linear;\n" +
-                            "\t-webkit-transition: all 0.1s linear;\n" +
-                            "\ttransition: all 0.1s linear;\n" +
-                            "\}" +
-
+                            "\tanimation-duration: 200ms;\n" +
+                            "\tanimation-timing-function: linear;\n" +
+                            "\}\n" +
+                            "@keyframes spin { \n" +
+                            "\tfrom {transform:rotate(0deg);} \n" +
+                            "\tto {transform:rotate(720deg);} \n" +
+                            "}" +
                             "\n\n.spinnable.spin {\n" + 
-                            "\t-ms-transform:rotate(180deg);\n" +
-                            "\t-moz-transform:rotate(180deg);\n" +
-                            "\t-webkit-transform:rotate(180deg);\n" +
-                            "\ttransform:rotate(180deg);\n" +
+                            "\tanimation-name: spin;\n" +
                             "\}");
 
         jQueryCode.empty();

@@ -227,16 +227,15 @@ span.tab{
 /************************************************
                                     SPIN CLASSES
 *************************************************/
-
 .spinnable{
-    -moz-transition: all 0.1s linear;
-    -webkit-transition: all 0.1s linear;
-    transition: all 0.1s linear;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+}
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(720deg);}
 }
 
 .spinnable.spin {
-    -ms-transform:rotate(180deg);
-    -moz-transform:rotate(180deg);
-    -webkit-transform:rotate(180deg);
-    transform:rotate(180deg);
+    animation-name: spin;
 }
