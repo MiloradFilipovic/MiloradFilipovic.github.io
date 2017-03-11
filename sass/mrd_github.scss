@@ -34,13 +34,130 @@ a { outline: 0; }
         left: 5%;
         @include transition;
 
-        h1 {
-            color: $text_color_main;
-            margin-top: -.2em;
+        .headings {
+            float: left;
+
+            h1 {
+                color: $text_color_main;
+                margin-top: -.2em;
+            }
+            h2 { color: $text_color_sub; }
         }
-        h2 { color: $text_color_sub; }
+
     }
 }
+
+@-webkit-keyframes scroll-ani {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  15% {
+    opacity: 1;
+    top: 29%;
+  }
+  50% {
+    opacity: 0;
+    top: 29%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}
+
+@-moz-keyframes scroll-ani {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  15% {
+    opacity: 1;
+    top: 29%;
+  }
+  50% {
+    opacity: 0;
+    top: 29%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}
+
+@keyframes scroll-ani {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  15% {
+    opacity: 1;
+    top: 29%;
+  }
+  50% {
+    opacity: 0;
+    top: 29%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}
+
+.mouse-scroll {
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #FFFD8A;
+    color: #FFFD8A;
+    letter-spacing: 2px;
+    text-decoration: none;
+    overflow: hidden;
+    float: left;
+    margin-right: 1em;
+}
+
+.mouse-scroll .mouse {
+    position: relative;
+    display: block;
+    width: 39px;
+    height: 66px;
+    margin: 0 auto 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 3px solid #FFFD8A;
+    border-radius: 23px;
+}
+
+.mouse-scroll .mouse-movement { 
+    position: absolute;
+    display: block;
+    top: 29%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    background: #FFFD8A;
+    border-radius: 50%;
+    -webkit-animation: scroll-ani 4s linear infinite;
+    -moz-animation: scroll-ani 4s linear infinite;
+    animation: scroll-ani 4s linear infinite;
+}
+
+.mouse-message { 
+    float: left;
+    margin: -200px 0 0 7px;
+    padding: 0;
+    -webkit-animation: scroll-ani 4s linear infinite;
+    -moz-animation: scroll-ani 4s linear infinite;
+    animation: scroll-ani 4s linear infinite;
+}
+  
+
+mouse-scroll:hover .mouse-message{
+    margin-top: 0;    
+} 
 
 h1.info_title { 
     color: $text_color_main;
