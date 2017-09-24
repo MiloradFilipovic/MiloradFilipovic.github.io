@@ -206,4 +206,9 @@ $(document).ready(function(e) {
                 (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
         return dist;
     }
+
+    // particles.js init
+    particlesJS.load('particles-js', 'config/particlesjs-config.json', function() {
+        console.log('callback - particles.js config loaded');
+    });
 }); // doc.ready end

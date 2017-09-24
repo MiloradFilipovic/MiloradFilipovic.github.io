@@ -1,0 +1,434 @@
+@import 'functions', 'vars', 'mixins';
+@include selection(#fff, $selection_color);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body { 
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; 
+}
+
+body {
+    font-family: $font_main;
+}
+
+.gesture_label { display: none; }
+h1 { font-size: 2.5em; }
+a { outline: 0; }
+
+.main_container {
+    height: 100%;
+    width: 100%;
+    float: left;
+    background: $main_background;
+    overflow: hidden;
+
+    .info {
+        position: absolute;
+        top: 10%;
+        left: 5%;
+        @include transition;
+
+        .headings {
+            float: left;
+
+            h1 {
+                color: $text_color_main;
+                margin-top: -.2em;
+            }
+            h2 { color: $text_color_sub; }
+        }
+
+    }
+}
+
+@-webkit-keyframes scroll-ani {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  15% {
+    opacity: 1;
+    top: 29%;
+  }
+  50% {
+    opacity: 0;
+    top: 29%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}
+
+@-moz-keyframes scroll-ani {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  15% {
+    opacity: 1;
+    top: 29%;
+  }
+  50% {
+    opacity: 0;
+    top: 29%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}
+
+@keyframes scroll-ani {
+  0% {
+    opacity: 1;
+    top: 50%;
+  }
+  15% {
+    opacity: 1;
+    top: 29%;
+  }
+  50% {
+    opacity: 0;
+    top: 29%;
+  }
+  100% {
+    opacity: 0;
+    top: 50%;
+  }
+}
+
+.mouse-scroll {
+    line-height: 18px;
+    font-size: 13px;
+    font-weight: normal;
+    color: #FFFD8A;
+    color: #FFFD8A;
+    letter-spacing: 2px;
+    text-decoration: none;
+    overflow: hidden;
+    float: left;
+    margin-right: 1em;
+}
+
+.mouse-scroll .mouse {
+    position: relative;
+    display: block;
+    width: 39px;
+    height: 66px;
+    margin: 0 auto 20px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 3px solid #FFFD8A;
+    border-radius: 23px;
+}
+
+.mouse-scroll .mouse-movement { 
+    position: absolute;
+    display: block;
+    top: 29%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    background: #FFFD8A;
+    border-radius: 50%;
+    -webkit-animation: scroll-ani 4s linear infinite;
+    -moz-animation: scroll-ani 4s linear infinite;
+    animation: scroll-ani 4s linear infinite;
+}
+
+.mouse-message { 
+    float: left;
+    margin: -200px 0 0 7px;
+    padding: 0;
+    -webkit-animation: scroll-ani 4s linear infinite;
+    -moz-animation: scroll-ani 4s linear infinite;
+    animation: scroll-ani 4s linear infinite;
+}
+  
+
+mouse-scroll:hover .mouse-message{
+    margin-top: 0;    
+} 
+
+h1.info_title { 
+    color: $text_color_main;
+    font-size: 1.7em; 
+}
+
+h2.info_sub {
+    color: $text_color_sub;
+    background: $selection_color;
+    padding: .2em;
+    display: inline-block;
+}
+
+
+.particles {
+    background: $main_background;
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.planet {
+    position: relative;
+    background: $planet_color;
+    width: $initial_planet_size;
+    height: $initial_planet_size;
+    margin: 25% auto 0;
+    border-radius: 50%;
+    border: 1px solid #000;
+    @include transition;
+
+    .cloud {
+        width: 35%;
+        height: 25%;
+        background-size: cover;
+        position: relative;
+        opacity: 1;
+        @include transition;
+
+        img { width: 100%; }
+    }
+
+    .row1 { 
+        left: 10%;
+        top: -1%;
+        width: 50%;
+        background-size: cover;
+    }
+    
+    .row2 { 
+        left: 30%;
+        top: 4%;
+        width: 76%;
+    }
+
+    .row3 {
+        top: 20%;
+        width: 40%;
+    }
+
+    .row4 {
+        top: 8%;
+        left: 53%;
+        width: 40%;
+    }
+
+    .continent {
+        width: 45%;
+        height: 40%;
+        position: absolute;
+        z-index: -1;
+        left: 26%;
+        top: 29%;
+        opacity: 0;
+        height: auto;
+        cursor: pointer;
+        @include transition;
+        .continent_pic { 
+            width: 100%; 
+        }
+
+        .hoverLink {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+    }
+
+    .game {
+        left: 33%;
+        top: -42%;
+        width: 45%;
+    }
+
+    .spinster {
+        left: 74%;
+        top: 48%;
+        width: 60%;
+    }
+
+    .about {
+        left: -18px;
+        top: 67%;
+        width: 48%;
+
+        .beam {
+            position: absolute;
+            left: -11%;
+            top: 69%;
+            width: 25px;
+            @include transition;
+        }
+    }
+}
+
+.links { display: none; }
+.link_activator {
+    cursor: pointer;
+}
+
+.continent_info {
+    display: none;
+    position: absolute;
+    max-width: 20em;
+}
+
+.game_info {
+    top: 13%;
+    left: 57%;
+}
+
+.about_info {
+    top: 60%;
+    left: 15%;
+    text-align: right;
+}
+
+.spinster_info {
+    top: 75%;
+    left: 68%;
+}
+
+.screen {
+    display: none;
+    position: absolute;
+    left: 25px;
+    top: 28px;
+    width: 11px;
+    height: 10px;    
+    outline: 1px solid transparent; /* Chrome jaggy edges fix */
+    background-image: url("../images/screen.png");
+    background-size: contain;
+}
+
+.blinking_beam { animation: pulse 1500ms infinite; }
+.blinking { animation: blinker steps(1) 200ms infinite; }
+.s1_ani { animation: screen1_animation steps(1) 400ms infinite; }
+.s2_ani { animation: screen2_animation steps(1) 400ms infinite; }
+.s3_ani { animation: screen3_animation steps(1) 400ms infinite; }
+
+@keyframes blinker {  
+    0% { opacity: .7; }
+    30% { opacity: .3; }
+    60% { opacity: .7; }
+    100% { opacity: .3; }
+}
+
+@keyframes pulse {  
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes screen1_animation {
+    0% { opacity: .7; }
+    20% { opacity: 0; }
+    80% { opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes screen2_animation {
+    0% { opacity: 0; }
+    20% { opacity: .7; }
+    80% { opacity: 0; }
+    100% { opacity: 0; }   
+}
+
+@keyframes screen3_animation {
+    0% { opacity: 0; }
+    20% { opacity: 0; }
+    80% { opacity: .7; }
+    100% { opacity: 0; }   
+}
+
+.bands_container {
+    width: 30%;
+    height: 40%;
+    text-align: center;
+    margin: 20% auto 0 ;
+
+    .band_title {
+        margin-bottom: 1em;
+    }
+
+    ul { list-style: none; }
+    a  { 
+        text-decoration: none;
+        color: $text_color_main;
+
+        &:hover { color: $text_color_sub; }
+    }
+}
+
+@include laptop_res {
+    .planet {
+        margin: 20% auto 0;   
+    }
+
+    .about_info { left: 5%; }
+    .game_info {
+        left: 59%;
+        top: 3%;
+    }
+    .spinster_info {
+        left: 72%;
+        top: 65%;
+    }
+}
+
+@include mobile_res {
+    .planet {
+        width: $initial_planet_small;
+        height: $initial_planet_small;
+        margin: 70% auto 0;   
+    }
+
+    .planet .about {
+        left: -11px;
+    }
+
+    .planet .about .beam {
+        left: -5px;
+        top: 27px;
+        width: 17px;
+    }
+
+    .about_info {
+        top: 72%;
+        h1 { 
+            float: left; 
+            text-align: left;
+        }
+        h2 { 
+            float: left;
+            clear: right;
+            text-align: left; 
+        }
+    }
+
+    .spinster_info {
+        left: 41%;
+        top: 70%;
+
+        h1 { text-align: right; }
+    }
+
+    .screen {
+        left: 16px;
+        top: 18px;
+        width: 6px;
+        height: 6px;
+    }
+}
