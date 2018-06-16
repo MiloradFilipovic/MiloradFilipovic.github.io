@@ -5,6 +5,7 @@ $(document).ready(function(e) {
     var HTMLCode     = $('#HTMLCode');
     var CSSCode      = $('#CSSCode');
     var jQueryCode   = $('#jQueryCode');
+    var jsCode       = $('#jsCode');
 
     $("#btnGenerate").click(function(e) {
         clearInterval(iconInterval);
@@ -19,14 +20,14 @@ $(document).ready(function(e) {
 
            $(".secondRow, .thirdRow").hide();
 
-            iconInterval = setInterval(function(){ 
+            iconInterval = setInterval(function(){
                 resultSpan.toggleClass('spin ' + finalIcon + ' ' + startIcon);
             }, 1000);
 
 
         }
         HTMLCode.empty();
-        HTMLCode.text("<span id=\"" + id + "\" class=\"spinnable fa\"></span>");
+        HTMLCode.text("<span id=\"" + id + "\" class=\"spinnable\"></span>");
 
         CSSCode.empty();
         CSSCode.multiline(  ".spinnable{ \n" +
@@ -37,13 +38,31 @@ $(document).ready(function(e) {
                             "\tfrom {transform:rotate(0deg);} \n" +
                             "\tto {transform:rotate(720deg);} \n" +
                             "}" +
-                            "\n\n.spinnable.spin {\n" + 
+                            "\n\n.spinnable.spin {\n" +
                             "\tanimation-name: spin;\n" +
                             "\}");
 
         jQueryCode.empty();
-        
-+        jQueryCode.multiline(   "$('#" + id + "').toggleClass('spin "  + finalIcon + " " + startIcon + "')\;");
+
+        jQueryCode.multiline(   "$('#" + id + "').toggleClass('spin "  + finalIcon + " " + startIcon + "')\;");
+
+        var startIconPrefix = startIcon.split(" ")[0];
+        var startIconName = startIcon.split(" ")[1];
+        var finalIconPrefix = finalIcon.split(" ")[0];
+        var finalIconName = finalIcon.split(" ")[1];
+
+        var jsCodeText =
+            'var icon = document.getElementById("' + id + '");\n' +
+            'icon.classList.toggle("spin");\n' +
+            'icon.classList.toggle("' + startIconName + '");\n' +
+            'icon.classList.toggle("' + finalIconName + '");'
+
+        if(startIconPrefix != finalIconPrefix) {
+            jsCodeText += '\nicon.classList.toggle("' + startIconPrefix + '");'
+            jsCodeText += '\nicon.classList.toggle("' + finalIconPrefix + '");'
+        }
+
+        jsCode.multiline(jsCodeText);
 
         // .secondRow, .thirdRow
         $(".secondRow").fadeIn("fast", function() {
