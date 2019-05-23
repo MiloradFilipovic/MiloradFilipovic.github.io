@@ -224,16 +224,30 @@ h2.info_sub {
       width: 100%;
       display: block; }
   .planet .game {
-    left: 33%;
-    top: -42%;
-    width: 45%; }
+    left: 53%;
+    top: -37%;
+    width: 45%;
+    -webkit-transform: rotate(23deg);
+    /* Safari */
+    -ms-transform: rotate(23deg);
+    /* IE 9 */
+    transform: rotate(23deg);
+    -webkit-backface-visibility: hidden;
+    /* Improve transformed images rendering on Win Chrome */ }
   .planet .spinster {
     left: 74%;
     top: 48%;
     width: 60%; }
   .planet .about {
-    left: -18px;
-    top: 67%;
+    top: 3%;
+    left: -35px;
+    -webkit-transform: rotate(67deg);
+    /* Safari */
+    -ms-transform: rotate(67deg);
+    /* IE 9 */
+    transform: rotate(67deg);
+    -webkit-backface-visibility: hidden;
+    /* Improve transformed images rendering on Win Chrome */
     width: 48%; }
     .planet .about .beam {
       position: absolute;
@@ -246,6 +260,17 @@ h2.info_sub {
       -o-transition: all 500ms linear;
       transition: all 500ms linear;
       outline: 1px solid transparent; }
+  .planet .monarch {
+    left: 9%;
+    top: 69%;
+    width: 45%;
+    -webkit-transform: rotate(-167deg);
+    /* Safari */
+    -ms-transform: rotate(-167deg);
+    /* IE 9 */
+    transform: rotate(-167deg);
+    -webkit-backface-visibility: hidden;
+    /* Improve transformed images rendering on Win Chrome */ }
 
 .links {
   display: none; }
@@ -263,13 +288,16 @@ h2.info_sub {
   left: 57%; }
 
 .about_info {
-  top: 60%;
-  left: 15%;
-  text-align: right; }
+  top: 22%;
+  left: 22%; }
 
 .spinster_info {
   top: 75%;
   left: 68%; }
+
+.monarch_info {
+  top: 82%;
+  left: 30%; }
 
 .screen {
   display: none;

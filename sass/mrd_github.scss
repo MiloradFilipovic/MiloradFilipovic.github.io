@@ -6,11 +6,11 @@
     padding: 0;
 }
 
-html, body { 
+html, body {
     position: absolute;
     height: 100%;
     width: 100%;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
 body {
@@ -130,7 +130,7 @@ a { outline: 0; }
     border-radius: 23px;
 }
 
-.mouse-scroll .mouse-movement { 
+.mouse-scroll .mouse-movement {
     position: absolute;
     display: block;
     top: 29%;
@@ -145,7 +145,7 @@ a { outline: 0; }
     animation: scroll-ani 4s linear infinite;
 }
 
-.mouse-message { 
+.mouse-message {
     float: left;
     margin: -200px 0 0 7px;
     padding: 0;
@@ -153,15 +153,15 @@ a { outline: 0; }
     -moz-animation: scroll-ani 4s linear infinite;
     animation: scroll-ani 4s linear infinite;
 }
-  
+
 
 mouse-scroll:hover .mouse-message{
-    margin-top: 0;    
-} 
+    margin-top: 0;
+}
 
-h1.info_title { 
+h1.info_title {
     color: $text_color_main;
-    font-size: 1.7em; 
+    font-size: 1.7em;
 }
 
 h2.info_sub {
@@ -201,14 +201,14 @@ h2.info_sub {
         img { width: 100%; }
     }
 
-    .row1 { 
+    .row1 {
         left: 10%;
         top: -1%;
         width: 50%;
         background-size: cover;
     }
-    
-    .row2 { 
+
+    .row2 {
         left: 30%;
         top: 4%;
         width: 76%;
@@ -236,8 +236,8 @@ h2.info_sub {
         height: auto;
         cursor: pointer;
         @include transition;
-        .continent_pic { 
-            width: 100%; 
+        .continent_pic {
+            width: 100%;
         }
 
         .hoverLink {
@@ -248,9 +248,10 @@ h2.info_sub {
     }
 
     .game {
-        left: 33%;
-        top: -42%;
+        left: 53%;
+        top: -37%;
         width: 45%;
+        @include rotate(23);
     }
 
     .spinster {
@@ -260,8 +261,9 @@ h2.info_sub {
     }
 
     .about {
-        left: -18px;
-        top: 67%;
+        top: 3%;
+        left: -35px;
+        @include rotate(67);
         width: 48%;
 
         .beam {
@@ -271,6 +273,13 @@ h2.info_sub {
             width: 25px;
             @include transition;
         }
+    }
+
+    .monarch {
+        left: 9%;
+        top: 69%;
+        width: 45%;
+        @include rotate(-167);
     }
 }
 
@@ -291,14 +300,18 @@ h2.info_sub {
 }
 
 .about_info {
-    top: 60%;
-    left: 15%;
-    text-align: right;
+    top: 22%;
+    left: 22%;
 }
 
 .spinster_info {
     top: 75%;
     left: 68%;
+}
+
+.monarch_info {
+    top: 82%;
+    left: 30%;
 }
 
 .screen {
@@ -307,7 +320,7 @@ h2.info_sub {
     left: 25px;
     top: 28px;
     width: 11px;
-    height: 10px;    
+    height: 10px;
     outline: 1px solid transparent; /* Chrome jaggy edges fix */
     background-image: url("../images/screen.png");
     background-size: contain;
@@ -319,14 +332,14 @@ h2.info_sub {
 .s2_ani { animation: screen2_animation steps(1) 400ms infinite; }
 .s3_ani { animation: screen3_animation steps(1) 400ms infinite; }
 
-@keyframes blinker {  
+@keyframes blinker {
     0% { opacity: .7; }
     30% { opacity: .3; }
     60% { opacity: .7; }
     100% { opacity: .3; }
 }
 
-@keyframes pulse {  
+@keyframes pulse {
     0% { opacity: 1; }
     50% { opacity: 0; }
     100% { opacity: 1; }
@@ -343,14 +356,14 @@ h2.info_sub {
     0% { opacity: 0; }
     20% { opacity: .7; }
     80% { opacity: 0; }
-    100% { opacity: 0; }   
+    100% { opacity: 0; }
 }
 
 @keyframes screen3_animation {
     0% { opacity: 0; }
     20% { opacity: 0; }
     80% { opacity: .7; }
-    100% { opacity: 0; }   
+    100% { opacity: 0; }
 }
 
 .bands_container {
@@ -364,7 +377,7 @@ h2.info_sub {
     }
 
     ul { list-style: none; }
-    a  { 
+    a  {
         text-decoration: none;
         color: $text_color_main;
 
@@ -374,7 +387,7 @@ h2.info_sub {
 
 @include laptop_res {
     .planet {
-        margin: 20% auto 0;   
+        margin: 20% auto 0;
     }
 
     .about_info { left: 5%; }
@@ -392,7 +405,7 @@ h2.info_sub {
     .planet {
         width: $initial_planet_small;
         height: $initial_planet_small;
-        margin: 70% auto 0;   
+        margin: 70% auto 0;
     }
 
     .planet .about {
@@ -407,14 +420,14 @@ h2.info_sub {
 
     .about_info {
         top: 72%;
-        h1 { 
-            float: left; 
+        h1 {
+            float: left;
             text-align: left;
         }
-        h2 { 
+        h2 {
             float: left;
             clear: right;
-            text-align: left; 
+            text-align: left;
         }
     }
 
