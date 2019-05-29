@@ -248,22 +248,23 @@ h2.info_sub {
     }
 
     .game {
-        left: 53%;
-        top: -37%;
+        left: -13%;
+        top: -26%;
         width: 45%;
-        @include rotate(23);
+        @include rotate(-49);
     }
 
     .spinster {
-        left: 74%;
-        top: 48%;
-        width: 60%;
+        left: 68%;
+        top: 50%;
+        width: 73%;
+        @include rotate(12);
     }
 
     .about {
-        top: 3%;
-        left: -35px;
-        @include rotate(67);
+        top: 70%;
+        left: -13px;
+        @include rotate(-5);
         width: 48%;
 
         .beam {
@@ -276,10 +277,10 @@ h2.info_sub {
     }
 
     .monarch {
-        left: 9%;
-        top: 69%;
+        left: 74%;
+        top: -9%;
         width: 45%;
-        @include rotate(-167);
+        @include rotate(22);
     }
 }
 
@@ -295,13 +296,13 @@ h2.info_sub {
 }
 
 .game_info {
-    top: 13%;
-    left: 57%;
+    top: 22%;
+    left: 30%;
 }
 
 .about_info {
-    top: 22%;
-    left: 22%;
+    top: 74%;
+    left: 19%;
 }
 
 .spinster_info {
@@ -310,8 +311,8 @@ h2.info_sub {
 }
 
 .monarch_info {
-    top: 82%;
-    left: 30%;
+    top: 22%;
+    left: 65%;
 }
 
 .screen {

@@ -224,28 +224,35 @@ h2.info_sub {
       width: 100%;
       display: block; }
   .planet .game {
-    left: 53%;
-    top: -37%;
+    left: -13%;
+    top: -26%;
     width: 45%;
-    -webkit-transform: rotate(23deg);
+    -webkit-transform: rotate(-49deg);
     /* Safari */
-    -ms-transform: rotate(23deg);
+    -ms-transform: rotate(-49deg);
     /* IE 9 */
-    transform: rotate(23deg);
+    transform: rotate(-49deg);
     -webkit-backface-visibility: hidden;
     /* Improve transformed images rendering on Win Chrome */ }
   .planet .spinster {
-    left: 74%;
-    top: 48%;
-    width: 60%; }
-  .planet .about {
-    top: 3%;
-    left: -35px;
-    -webkit-transform: rotate(67deg);
+    left: 68%;
+    top: 50%;
+    width: 73%;
+    -webkit-transform: rotate(12deg);
     /* Safari */
-    -ms-transform: rotate(67deg);
+    -ms-transform: rotate(12deg);
     /* IE 9 */
-    transform: rotate(67deg);
+    transform: rotate(12deg);
+    -webkit-backface-visibility: hidden;
+    /* Improve transformed images rendering on Win Chrome */ }
+  .planet .about {
+    top: 70%;
+    left: -13px;
+    -webkit-transform: rotate(-5deg);
+    /* Safari */
+    -ms-transform: rotate(-5deg);
+    /* IE 9 */
+    transform: rotate(-5deg);
     -webkit-backface-visibility: hidden;
     /* Improve transformed images rendering on Win Chrome */
     width: 48%; }
@@ -261,14 +268,14 @@ h2.info_sub {
       transition: all 500ms linear;
       outline: 1px solid transparent; }
   .planet .monarch {
-    left: 9%;
-    top: 69%;
+    left: 74%;
+    top: -9%;
     width: 45%;
-    -webkit-transform: rotate(-167deg);
+    -webkit-transform: rotate(22deg);
     /* Safari */
-    -ms-transform: rotate(-167deg);
+    -ms-transform: rotate(22deg);
     /* IE 9 */
-    transform: rotate(-167deg);
+    transform: rotate(22deg);
     -webkit-backface-visibility: hidden;
     /* Improve transformed images rendering on Win Chrome */ }
 
@@ -284,20 +291,20 @@ h2.info_sub {
   max-width: 20em; }
 
 .game_info {
-  top: 13%;
-  left: 57%; }
+  top: 22%;
+  left: 30%; }
 
 .about_info {
-  top: 22%;
-  left: 22%; }
+  top: 74%;
+  left: 19%; }
 
 .spinster_info {
   top: 75%;
   left: 68%; }
 
 .monarch_info {
-  top: 82%;
-  left: 30%; }
+  top: 22%;
+  left: 65%; }
 
 .screen {
   display: none;
