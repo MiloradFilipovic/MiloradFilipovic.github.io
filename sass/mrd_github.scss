@@ -21,6 +21,10 @@ body {
 h1 { font-size: 2.5em; }
 a { outline: 0; }
 
+a:visited {
+    color: $selection_color;
+}
+
 .main_container {
     height: 100%;
     width: 100%;
@@ -162,6 +166,7 @@ mouse-scroll:hover .mouse-message{
 h1.info_title {
     color: $text_color_main;
     font-size: 1.7em;
+    text-align: justify;
 }
 
 h2.info_sub {
@@ -171,6 +176,17 @@ h2.info_sub {
     display: inline-block;
 }
 
+.info-icons {
+    font-size: 1.2em;
+    text-align: right;
+    margin-top: 10px;
+    
+    .info-icon {
+        color: $text_color_main;
+        margin-left: 10px;
+        &:hover { color: $selection_color; }
+    }
+}
 
 .particles {
     background: $main_background;

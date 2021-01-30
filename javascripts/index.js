@@ -166,10 +166,12 @@ $(document).ready(function(e) {
         }
     });
 
+    var timer;
     // CONTINENT HOVER
     $('.continent').hover(function(e) {
         if($(this).css('opacity') == 1) {
             var activates = $(this).attr('data-activates');
+            clearTimeout(timer);
             $('.' + activates).stop().fadeIn();
             if($(this).hasClass('game')) {
                 $('.screens').fadeIn().addClass('blinking');
@@ -182,14 +184,26 @@ $(document).ready(function(e) {
         }
     }, function(e) {
         var activates = $(this).attr('data-activates');
-        $('.' + activates).stop().fadeOut();
-        $('.screens').hide().removeClass('blinking');
-        $('.screen1').hide().removeClass('s1_ani');
-        $('.screen2').hide().removeClass('s2_ani');
-        $('.screen3').hide().removeClass('s3_ani');
-        $('.beam').addClass('blinking_beam');
+        timer = setTimeout(function() {
+            if(!$('.' + activates).hasClass('user-hovered')) {
+                $('.' + activates).stop().fadeOut();
+            }else {
+                $('.' + activates).removeClass('user-hovered');
+            }
+            $('.screens').hide().removeClass('blinking');
+            $('.screen1').hide().removeClass('s1_ani');
+            $('.screen2').hide().removeClass('s2_ani');
+            $('.screen3').hide().removeClass('s3_ani');
+            $('.beam').addClass('blinking_beam');
+        }, 200);
     });
 
+    $('.about_info').hover(function(e) {
+        $(this).show();
+        $(this).addClass('user-hovered');
+    }, function(e) {
+        $(this).fadeOut();
+    });
 
     function scale(element, value) {
         element.css({
