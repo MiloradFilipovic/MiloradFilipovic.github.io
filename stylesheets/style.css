@@ -58,14 +58,15 @@ a:visited {
   transition: all 500ms linear;
   outline: 1px solid transparent;
 }
-.main_container .info .headings {
+.main_container .info .greeting {
   float: left;
 }
-.main_container .info .headings h1 {
+.main_container .info .greeting h3 {
   color: #FFFD8A;
   margin-top: -0.2em;
+  font-size: 2em;
 }
-.main_container .info .headings h2 {
+.main_container .info .greeting h2 {
   color: #DEFFEB;
 }
 
@@ -177,18 +178,19 @@ mouse-scroll:hover .mouse-message {
   margin-top: 0;
 }
 
-h1.info_title {
+h4.info_title {
   color: #FFFD8A;
   font-size: 1.7em;
   text-align: justify;
 }
-h1.info_title a {
+h4.info_title a {
   color: #d27854;
 }
 
-h2.info_sub {
+h5.info_sub {
   color: #DEFFEB;
   background: #d27854;
+  font-size: 1.2em;
   padding: 0.2em;
   display: inline-block;
 }
@@ -544,11 +546,11 @@ h2.info_sub {
   .about_info {
     top: 72%;
   }
-  .about_info h1 {
+  .about_info h4 {
     float: left;
     text-align: left;
   }
-  .about_info h2 {
+  .about_info h5 {
     float: left;
     clear: right;
     text-align: left;
@@ -558,7 +560,7 @@ h2.info_sub {
     left: 41%;
     top: 70%;
   }
-  .spinster_info h1 {
+  .spinster_info h4 {
     text-align: right;
   }
 
