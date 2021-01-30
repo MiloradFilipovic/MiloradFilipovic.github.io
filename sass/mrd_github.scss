@@ -167,6 +167,7 @@ h1.info_title {
     color: $text_color_main;
     font-size: 1.7em;
     text-align: justify;
+    a { color: $selection_color }
 }
 
 h2.info_sub {

@@ -184,6 +184,7 @@ $(document).ready(function(e) {
         }
     }, function(e) {
         var activates = $(this).attr('data-activates');
+        var timeout =$(this).hasClass('about') ? 200 : 0;
         timer = setTimeout(function() {
             if(!$('.' + activates).hasClass('user-hovered')) {
                 $('.' + activates).stop().fadeOut();
@@ -195,7 +196,7 @@ $(document).ready(function(e) {
             $('.screen2').hide().removeClass('s2_ani');
             $('.screen3').hide().removeClass('s3_ani');
             $('.beam').addClass('blinking_beam');
-        }, 200);
+        }, timeout);
     });
 
     $('.about_info').hover(function(e) {
