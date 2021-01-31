@@ -11,15 +11,14 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
     <link href='https://fonts.googleapis.com/css?family=Amatic+SC&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://kit.fontawesome.com/4973abd21e.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="javascripts/jquery-2.0.3.min.js"></script>
     <script type="text/javascript" src="javascripts/particles.min.js"></script>
-    <script type="text/javascript" src="javascripts/index.js"></script>
+    <script type="text/javascript" src="javascripts/index.js" defer></script>
 </head>
 
 <body>
     <div class="particles" id="particles-js"></div>
-    <div class="main_container">
-        <div class="info">
+    <div class="main_container" id="main_container">
+        <div class="info" id="info">
             <div class="mouse-scroll">
                 <span class="mouse">
                     <span class="mouse-movement"></span>
@@ -31,7 +30,7 @@
                 <h3>Zoom in to see the good stuff.</h3>
             </div>
         </div>
-        <div class="planet">
+        <div class="planet" id="planet">
             <div class="cloud row1"><img src="images/oblak_row1.png"></div>
             <div class="cloud row2"><img src="images/oblak_row2_1px.png"></div>
             <div class="cloud row3"><img src="images/oblak_row3.png"></div>

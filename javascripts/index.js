@@ -1,229 +1,99 @@
-$(document).ready(function(e) {
-    var main_container = $(".main_container");
-    var planet = $(".planet");
-    var info_div = $(".info");
+// Cached references to main elements on the page
+let main_container = document.getElementById('main_container');
+let planet = document.getElementById('planet');
+let info_div = document.getElementById('info');
+let clouds = document.querySelectorAll('.cloud') || [];
+let continents = document.querySelectorAll('.continent') || [];
 
-    var current_planet_scale = 1;
-    var max_planet_scale = 3;
-    var planet_scale_step = .2;
-    var planet_scale_step_count = (max_planet_scale - 1) / planet_scale_step;
+// Scale animation values and calculations
+let current_planet_scale = 1;
+let max_planet_scale = 3;
+let planet_scale_step = .2;
+let planet_scale_step_count = (max_planet_scale - 1) / planet_scale_step;
 
-    var current_cloud_alpha = 1;
-    var cloud_alpha_step = 1 / planet_scale_step_count;
+let current_cloud_alpha = 1;
+let cloud_alpha_step = 1 / planet_scale_step_count;
 
-    var current_continent_alpha = 0;
-    var continent_alpha_step = 1 / planet_scale_step_count;
+let current_continent_alpha = 0;
+let continent_alpha_step = 1 / planet_scale_step_count;
 
-    var scaling = false;
-    var current_finger_distance = 0;
-    var touch_ready = false;
+let scaling = false;
 
-    var current_info_top = info_div.offset().top;
-    var current_info_left = info_div.offset().left;
-    var final_info_top = -62;
-    var final_info_left = -335;
-    var info_top_steps = current_info_top - final_info_top;
-    var info_left_steps = current_info_left - final_info_left;
-    var info_top_step = info_top_steps / planet_scale_step_count;
-    var info_left_step = info_left_steps / planet_scale_step_count;
+let current_info_top = info_div.offsetTop;
+let current_info_left = info_div.offsetLeft;
+let final_info_top = -62;
+let final_info_left = -335;
+let info_top_steps = current_info_top - final_info_top;
+let info_left_steps = current_info_left - final_info_left;
+let info_top_step = info_top_steps / planet_scale_step_count;
+let info_left_step = info_left_steps / planet_scale_step_count;
 
-    // If touch events are supported, activate gesture scripts
-    if ('ontouchstart' in document.documentElement) {
-        $(".hoverLink").bind('touchstart', function(e) {
-            e.preventDefault();
-            console.log("TAP!");
-            var tapped_continent = $(this).closest(".continent");
-            if($(this).css('opacity') == 1) {
-                var activates = tapped_continent.attr('data-activates');
-                var target_el = $('.' + activates);
-                if(!target_el.is(':visible')) {
-                    target_el.fadeIn();
-                    if(tapped_continent.hasClass('game')) {
-                        $('.screens').fadeIn().addClass('blinking');
-                        $('.screen1').fadeIn().addClass('s1_ani');
-                        $('.screen2').fadeIn().addClass('s2_ani');
-                        $('.screen3').fadeIn().addClass('s3_ani');
-                    }else if(tapped_continent.hasClass('about')) {
-                        $('.beam').removeClass('blinking_beam');
-                    }
+// particles.js init
+particlesJS.load('particles-js', 'config/particlesjs-config.json');
+
+// If touch events are supported, activate gesture scripts
+if ('ontouchstart' in document.documentElement) {
+    console.log('Touch controls are not currently supported.');
+}else {
+    let ticking = false;
+    // Main window scroll event. Detects scroll direction
+    // and triggers animations based on it
+    window.addEventListener('wheel', function(event) {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                if(event.deltaY > 0) {
+                    zoomOut();
                 }else {
-                    target_el.fadeOut();
-                    $('.screens').hide().removeClass('blinking');
-                    $('.screen1').hide().removeClass('s1_ani');
-                    $('.screen2').hide().removeClass('s2_ani');
-                    $('.screen3').hide().removeClass('s3_ani');
-                    $('.beam').addClass('blinking_beam');
+                    zoomIn();
                 }
+                ticking = false;
+            });
+        }
+        ticking = true;
+    });
+}
+
+// Zoom the planet up to specified max scale
+function zoomIn() {
+    if(current_planet_scale <= max_planet_scale) {
+        planet.style.transform = `scale(${current_planet_scale})`;
+        if(current_cloud_alpha > 0) {
+            current_cloud_alpha -= cloud_alpha_step;
+            for(let cloud of clouds || []) {
+                cloud.style.opacity = current_cloud_alpha;
             }
-        });
-
-        $(window).on("touchstart", function(ev) {
-            touch_ready = true;
-            var e = ev.originalEvent;
-            if(e.touches.length == 2) {
-                scaling = true;
-                var dist = get_distance(e);
-                current_finger_distance = dist;
-            }
-        });
-
-        $(window).on("touchmove", function(ev) {
-            var e = ev.originalEvent;
-            if(scaling) {
-                var dist = get_distance(e);
-                if(dist > current_finger_distance) {
-                    $('.gesture_label span').text("Zooming IN");
-                    if(current_planet_scale <= max_planet_scale) {
-                        scale(planet, current_planet_scale);
-                        scale(info_div, current_planet_scale);
-                        if(current_cloud_alpha > 0) {
-                            current_cloud_alpha -= cloud_alpha_step;
-                            $(".cloud").css("opacity", current_cloud_alpha);
-                            info_div.css("opacity", current_cloud_alpha);
-                        }
-                        if(current_continent_alpha < 1) {
-                            current_continent_alpha += continent_alpha_step;
-                            $(".continent").css("opacity", current_continent_alpha);
-                        }
-                        current_info_top -= info_top_step;
-                        current_info_left -= info_left_step;
-                        info_div.css("left", current_info_left);
-                        info_div.css("top", current_info_top);
-                        current_planet_scale += planet_scale_step;
-
-                        current_planet_scale += planet_scale_step;
-                    }
-                }else {
-                    $('.gesture_label span').text("Zooming OUT");
-                    if(current_planet_scale >= 1) {
-                        scale(planet, current_planet_scale);
-                        scale(info_div, current_planet_scale);
-                        if(current_cloud_alpha < 1) {
-                            current_cloud_alpha += cloud_alpha_step;
-                            $(".cloud").css("opacity", current_cloud_alpha);
-                            info_div.css("opacity", current_cloud_alpha);
-                        }
-
-                        if(current_continent_alpha >= 0) {
-                            current_continent_alpha -= continent_alpha_step;
-                            $(".continent").css("opacity", current_continent_alpha);
-                        }
-                        current_info_top += info_top_step;
-                        current_info_left += info_left_step;
-                        info_div.css("left", current_info_left);
-                        info_div.css("top", current_info_top);
-                        current_planet_scale -= planet_scale_step;
-                    }
-                }
-                // current_finger_distance = dist;
-            }
-        });
-
-        $(window).on("touchend", function(ev) {
-            var e = ev.originalEvent;
-            if(scaling) {
-                var dist = get_distance(e);
-                scalling = false;
-                current_finger_distance = dist;
-            }
-        });
-    }
-
-    $(window).bind('mousewheel DOMMouseScroll', function(event){
-        // Mouse wheel up
-        if (event.originalEvent.wheelDelta > 0 || event.originalEvent.detail < 0) {
-            // Zoom the planet up to 4X
-            if(current_planet_scale <= max_planet_scale) {
-                scale(planet, current_planet_scale);
-                if(current_cloud_alpha > 0) {
-                    current_cloud_alpha -= cloud_alpha_step;
-                    $(".cloud").css("opacity", current_cloud_alpha);
-                    info_div.css("opacity", current_cloud_alpha);
-                }
-                if(current_continent_alpha < 1) {
-                    current_continent_alpha += continent_alpha_step;
-                    $(".continent").css("opacity", current_continent_alpha);
-                }
-                info_div.css("opacity", current_cloud_alpha);
-                current_planet_scale += planet_scale_step;
-            }
-        }else { // Mouse wheel down
-            // Zoom out down to original size
-            if(current_planet_scale >= 1) {
-                scale(planet, current_planet_scale);
-                if(current_cloud_alpha < 1) {
-                    current_cloud_alpha += cloud_alpha_step;
-                    $(".cloud").css("opacity", current_cloud_alpha);
-                    info_div.css("opacity", current_cloud_alpha);
-                }
-                if(current_continent_alpha >= 0) {
-                    current_continent_alpha -= continent_alpha_step;
-                    $(".continent").css("opacity", current_continent_alpha);
-                }
-                info_div.css("opacity", current_cloud_alpha);
-                current_planet_scale -= planet_scale_step;
+            info_div.style.opacity = current_cloud_alpha;
+        }
+        if(current_cloud_alpha < 1) {
+            current_continent_alpha += continent_alpha_step;
+            // TODO: Cache this and clouds
+            for(let continent of continents || []) {
+                continent.style.opacity = current_continent_alpha;
             }
         }
-    });
+        info_div.style.opacity = current_cloud_alpha;
+        current_planet_scale += planet_scale_step;
+    }
+}
 
-    var timer;
-    // CONTINENT HOVER
-    $('.continent').hover(function(e) {
-        if($(this).css('opacity') == 1) {
-            var activates = $(this).attr('data-activates');
-            clearTimeout(timer);
-            $('.' + activates).stop().fadeIn();
-            if($(this).hasClass('game')) {
-                $('.screens').fadeIn().addClass('blinking');
-                $('.screen1').fadeIn().addClass('s1_ani');
-                $('.screen2').fadeIn().addClass('s2_ani');
-                $('.screen3').fadeIn().addClass('s3_ani');
-            }else if($(this).hasClass('about')) {
-                $('.beam').removeClass('blinking_beam');
+// Zoom the planet down to it's original size
+function zoomOut() {
+    if(current_planet_scale >= 1) {
+        planet.style.transform = `scale(${current_planet_scale})`;
+        if(current_cloud_alpha < 1) {
+            current_cloud_alpha += cloud_alpha_step;
+            for(let cloud of clouds || []) {
+                cloud.style.opacity = current_cloud_alpha;
+            }
+            info_div.style.opacity = current_cloud_alpha;
+        }
+        if(current_cloud_alpha >= 0) {
+            current_continent_alpha -= continent_alpha_step;
+            for(let continent of continents || []) {
+                continent.style.opacity = current_continent_alpha;
             }
         }
-    }, function(e) {
-        var activates = $(this).attr('data-activates');
-        var timeout =$(this).hasClass('about') ? 200 : 0;
-        timer = setTimeout(function() {
-            if(!$('.' + activates).hasClass('user-hovered')) {
-                $('.' + activates).stop().fadeOut();
-            }else {
-                $('.' + activates).removeClass('user-hovered');
-            }
-            $('.screens').hide().removeClass('blinking');
-            $('.screen1').hide().removeClass('s1_ani');
-            $('.screen2').hide().removeClass('s2_ani');
-            $('.screen3').hide().removeClass('s3_ani');
-            $('.beam').addClass('blinking_beam');
-        }, timeout);
-    });
-
-    $('.about_info').hover(function(e) {
-        $(this).show();
-        $(this).addClass('user-hovered');
-    }, function(e) {
-        $(this).fadeOut();
-    });
-
-    function scale(element, value) {
-        element.css({
-            '-moz-transform': 'scale('+ current_planet_scale + ')', 
-            '-webkit-transform': 'scale('+ current_planet_scale + ')',
-            '-o-transform': 'scale('+ current_planet_scale + ')'
-        });
+        info_div.style.opacity = current_cloud_alpha;
+        current_planet_scale -= planet_scale_step;
     }
-
-    function get_distance(e) {
-        var dist =
-            Math.sqrt(
-                (e.touches[0].pageX-e.touches[1].pageX) * (e.touches[0].pageX-e.touches[1].pageX) +
-                (e.touches[0].pageY-e.touches[1].pageY) * (e.touches[0].pageY-e.touches[1].pageY));
-        return dist;
-    }
-
-    // particles.js init
-    particlesJS.load('particles-js', 'config/particlesjs-config.json', function() {
-        console.log('callback - particles.js config loaded');
-    });
-}); // doc.ready end
+}
