@@ -12,7 +12,16 @@
     <link href='https://fonts.googleapis.com/css?family=Amatic+SC&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://kit.fontawesome.com/4973abd21e.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="javascripts/particles.min.js"></script>
-    <script type="text/javascript" src="javascripts/index_min.js" defer></script>
+    <script type="text/javascript" src="javascripts/index.js" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S9273E2R33"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-S9273E2R33');
+    </script>
 </head>
 
 <body>
@@ -64,15 +73,15 @@
                 <img class="continent_pic" src="images/kontinent_center.png">
             </div>
         </div>
-        <div class="continent_info spinster_info" id="spinster_info">
+        <div class="continent_info spinster_info" id="spinster_info" data-position="bottom-right">
             <h4 class="info_title">Spinster</h4>
             <h5 class="info_sub">Animated spinning icons generator for your website.</h5>
         </div>
-        <div class="continent_info game_info" id="game_info">
+        <div class="continent_info game_info" id="game_info" data-position="top-left">
             <h4 class="info_title">CO-LETTER-ALL</h4>
             <h5 class="info_sub">Browser game built in jQuery.</h5>
         </div>
-        <div class="continent_info about_info" id="about_info">
+        <div class="continent_info about_info" id="about_info" data-position="bottom-left">
             <h5 class="info_sub">About me:</h5>
             <h4 class="info_title">
                 I am a computer scientist and a freelance front-end developer currently based in 
@@ -86,7 +95,7 @@
                 <a href="https://github.com/MiloradFilipovic" title="See my LinkedIn profile." class="info-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
             </p>
         </div>
-        <div class="continent_info monarch_info" id="monarch_info">
+        <div class="continent_info monarch_info" id="monarch_info" data-position="top-right">
             <h4 class="info_title">MONARCH</h4>
             <h5 class="info_sub">Visual studio code color theme.</h5>
         </div>

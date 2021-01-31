@@ -311,25 +311,8 @@ h5.info_sub {
     max-width: 20em;
 }
 
-.game_info {
-    top: 22%;
-    left: 28%;
-}
-
 .about_info {
-    top: 74%;
-    left: 19%;
     padding: .5em 7em .5em .5em;
-}
-
-.spinster_info {
-    top: 75%;
-    left: 68%;
-}
-
-.monarch_info {
-    top: 22%;
-    left: 65%;
 }
 
 .screen {
@@ -407,19 +390,17 @@ h5.info_sub {
     .planet {
         margin: 20% auto 0;
     }
-
-    .about_info { left: 5%; }
-    .game_info {
-        left: 59%;
-        top: 3%;
-    }
-    .spinster_info {
-        left: 72%;
-        top: 65%;
-    }
 }
 
 @include mobile_res {
+    .greeting {
+        h3 { font-size: 1.5em; }
+        h2 { 
+            font-size: 1em; 
+            padding-top: .5em; 
+        }
+    }
+
     .planet {
         width: $initial_planet_small;
         height: $initial_planet_small;
@@ -436,8 +417,14 @@ h5.info_sub {
         width: 17px;
     }
 
+    .continent_info {
+        top: 0 !important;
+        left: 0 !important;
+        width: 100%;
+        padding: 1em;
+    }
+
     .about_info {
-        top: 72%;
         h4 {
             float: left;
             text-align: left;
@@ -447,13 +434,6 @@ h5.info_sub {
             clear: right;
             text-align: left;
         }
-    }
-
-    .spinster_info {
-        left: 41%;
-        top: 70%;
-
-        h4 { text-align: right; }
     }
 
     .screen {

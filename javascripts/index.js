@@ -37,6 +37,7 @@ let info_left_step = info_left_steps / planet_scale_step_count;
 // particles.js init
 particlesJS.load('particles-js', 'config/particlesjs-config.json');
 
+
 // If touch events are supported, activate gesture scripts
 if ('ontouchstart' in document.documentElement) {
     console.log('Touch controls are not currently supported.');
@@ -65,14 +66,14 @@ function zoomIn() {
         planet.style.transform = `scale(${current_planet_scale})`;
         if(current_cloud_alpha > 0) {
             current_cloud_alpha -= cloud_alpha_step;
-            for(let cloud of clouds || []) {
+            for(let cloud of clouds) {
                 cloud.style.opacity = current_cloud_alpha;
             }
             info_div.style.opacity = current_cloud_alpha;
         }
         if(current_cloud_alpha < 1) {
             current_continent_alpha += continent_alpha_step;
-            for(let continent of continents || []) {
+            for(let continent of continents) {
                 continent.style.opacity = current_continent_alpha;
             }
         }
@@ -87,14 +88,14 @@ function zoomOut() {
         planet.style.transform = `scale(${current_planet_scale})`;
         if(current_cloud_alpha < 1) {
             current_cloud_alpha += cloud_alpha_step;
-            for(let cloud of clouds || []) {
+            for(let cloud of clouds) {
                 cloud.style.opacity = current_cloud_alpha;
             }
             info_div.style.opacity = current_cloud_alpha;
         }
         if(current_cloud_alpha >= 0) {
             current_continent_alpha -= continent_alpha_step;
-            for(let continent of continents || []) {
+            for(let continent of continents) {
                 continent.style.opacity = current_continent_alpha;
             }
         }
@@ -109,28 +110,36 @@ for(let continent of continents) {
         if(continent.style.opacity === '1') {
             // Find the description that needs to be shown and display it
             let activates = continent.getAttribute('data-activates');
-            document.getElementById(activates).style.display = 'block';
-            // Activate the arcade screen animation
-            if(continent.classList.contains('game')) {
-                activateScreenBlinking(); 
-            }else if(continent.classList.contains('about')) {
-                tower_beam.classList.remove('blinking_beam');
+            if(activates) {
+                // Set popup element position based on the hovered continent position
+                let activatesEl = document.getElementById(activates);
+
+                setPosition(continent, activatesEl);
+                activatesEl.style.display = 'block';
+                // Activate the arcade screen animation
+                if(continent.classList.contains('game')) {
+                    activateScreenBlinking(); 
+                }else if(continent.classList.contains('about')) {
+                    tower_beam.classList.remove('blinking_beam');
+                }
             }
         }
     });
     continent.addEventListener('mouseout', function(event) {
         let activates = continent.getAttribute('data-activates');
-        let activatesEl = document.getElementById(activates);
-        if(!activatesEl.classList.contains('user-hovered')) {
-            activatesEl.style.display = 'none';
-        }else {
-            activatesEl.classList.remove('user-hovered');
-        }
-        // Activate the arcade screen animation
-        if(continent.classList.contains('game')) {
-            deactivateScreenBlinking(); 
-        }else if(continent.classList.contains('about')) {
-            tower_beam.classList.add('blinking_beam');
+        if(activates) {
+            let activatesEl = document.getElementById(activates);
+            if(!activatesEl.classList.contains('user-hovered')) {
+                activatesEl.style.display = 'none';
+            }else {
+                activatesEl.classList.remove('user-hovered');
+            }
+            // Activate the arcade screen animation
+            if(continent.classList.contains('game')) {
+                deactivateScreenBlinking(); 
+            }else if(continent.classList.contains('about')) {
+                tower_beam.classList.add('blinking_beam');
+            }
         }
     });
 }
@@ -142,6 +151,26 @@ aboutme_div.addEventListener('mouseover', function(event) {
 aboutme_div.addEventListener('mouseout', function(event) {
     aboutme_div.style.display = 'none';
 });
+
+// Sets the position of popup element based on it's data attribute and it's related continent position
+function setPosition(continent, popup) {
+    let popupPosition = popup.getAttribute('data-position');
+    let continentRect = continent.getBoundingClientRect();
+
+    if(popupPosition === 'top-left') {
+        popup.style.top = continentRect.top - 20 + 'px';
+        popup.style.left = continentRect.left - 100 + 'px';
+    }else if(popupPosition === 'top-right') {
+        popup.style.top = continentRect.top - 50 + 'px';
+        popup.style.left = continentRect.right + 'px';
+    }else if(popupPosition === 'bottom-left') {
+        popup.style.top = continentRect.bottom - 70 + 'px';
+        popup.style.left = continentRect.left - 350 + 'px';
+    }else if(popupPosition === 'bottom-right') {
+        popup.style.top = continentRect.bottom - 50 + 'px';
+        popup.style.left = continentRect.right - 20 + 'px';
+    }
+}
 
 function activateScreenBlinking() {
     arcade_screen.style.display = 'block'
