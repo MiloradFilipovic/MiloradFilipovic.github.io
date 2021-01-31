@@ -1,8 +1,11 @@
-MiloradFilipovic.github.io
+Personal portfolio page
 ==========================
 
-Portfolio page.
+## Installation
+  1. `npm install`
+  2. `npm install -g npm-run-all`
 
-```
-  sass --watch --style=compressed sass\mrd_github.scss:stylesheets\style.css
-```
+## Run
+  - Just build: `npm run build`
+  - Watch and compile JS: `npm run watch`
+  - Watch and serve everything: `npm-run-all --parallel watch watch-sass`
