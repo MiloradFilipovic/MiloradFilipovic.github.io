@@ -4,6 +4,12 @@ let planet = document.getElementById('planet');
 let info_div = document.getElementById('info');
 let clouds = document.querySelectorAll('.cloud') || [];
 let continents = document.querySelectorAll('.continent') || [];
+let arcade_screen = document.getElementById('screens');
+let screen_frame_1 = document.getElementById('screen1');
+let screen_frame_2 = document.getElementById('screen2');
+let screen_frame_3 = document.getElementById('screen3');
+let tower_beam = document.getElementById('beam');
+let aboutme_div = document.getElementById('about_info');
 
 // Scale animation values and calculations
 let current_planet_scale = 1;
@@ -66,7 +72,6 @@ function zoomIn() {
         }
         if(current_cloud_alpha < 1) {
             current_continent_alpha += continent_alpha_step;
-            // TODO: Cache this and clouds
             for(let continent of continents || []) {
                 continent.style.opacity = current_continent_alpha;
             }
@@ -96,4 +101,66 @@ function zoomOut() {
         info_div.style.opacity = current_cloud_alpha;
         current_planet_scale -= planet_scale_step;
     }
+}
+
+// Continent hover
+for(let continent of continents) {
+    continent.addEventListener('mouseover', function(event) {
+        if(continent.style.opacity === '1') {
+            // Find the description that needs to be shown and display it
+            let activates = continent.getAttribute('data-activates');
+            document.getElementById(activates).style.display = 'block';
+            // Activate the arcade screen animation
+            if(continent.classList.contains('game')) {
+                activateScreenBlinking(); 
+            }else if(continent.classList.contains('about')) {
+                tower_beam.classList.remove('blinking_beam');
+            }
+        }
+    });
+    continent.addEventListener('mouseout', function(event) {
+        let activates = continent.getAttribute('data-activates');
+        let activatesEl = document.getElementById(activates);
+        if(!activatesEl.classList.contains('user-hovered')) {
+            activatesEl.style.display = 'none';
+        }else {
+            activatesEl.classList.remove('user-hovered');
+        }
+        // Activate the arcade screen animation
+        if(continent.classList.contains('game')) {
+            deactivateScreenBlinking(); 
+        }else if(continent.classList.contains('about')) {
+            tower_beam.classList.add('blinking_beam');
+        }
+    });
+}
+
+aboutme_div.addEventListener('mouseover', function(event) {
+    aboutme_div.style.display = 'block';
+    aboutme_div.classList.add('user-hovered');
+});
+aboutme_div.addEventListener('mouseout', function(event) {
+    aboutme_div.style.display = 'none';
+});
+
+function activateScreenBlinking() {
+    arcade_screen.style.display = 'block'
+    arcade_screen.classList.add('blinking');
+    screen_frame_1.style.display = 'block';
+    screen_frame_1.classList.add('s1_ani');
+    screen_frame_2.style.display = 'block';
+    screen_frame_2.classList.add('s2_ani');
+    screen_frame_3.style.display = 'block';
+    screen_frame_3.classList.add('s3_ani');
+}
+
+function deactivateScreenBlinking() {
+    arcade_screen.style.display = 'none'
+    arcade_screen.classList.remove('blinking');
+    screen_frame_1.style.display = 'none';
+    screen_frame_1.classList.remove('s1_ani');
+    screen_frame_2.style.display = 'none';
+    screen_frame_2.classList.remove('s2_ani');
+    screen_frame_3.style.display = 'none';
+    screen_frame_3.classList.remove('s3_ani');
 }

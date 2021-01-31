@@ -12,7 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Amatic+SC&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <script src="https://kit.fontawesome.com/4973abd21e.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="javascripts/particles.min.js"></script>
-    <script type="text/javascript" src="javascripts/index.js" defer></script>
+    <script type="text/javascript" src="javascripts/index_min.js" defer></script>
 </head>
 
 <body>
@@ -43,10 +43,10 @@
             </div>
             <div class="continent game" data-activates="game_info">
                 <a href="game.html" target="_blank" class="hoverLink">
-                    <div class="screens">
-                        <img src="images/screen1.png" class="screen screen1">
-                        <img src="images/screen2.png" class="screen screen2">
-                        <img src="images/screen3.png" class="screen screen3">
+                    <div class="screens" id="screens">
+                        <img src="images/screen1.png" class="screen screen1" id="screen1">
+                        <img src="images/screen2.png" class="screen screen2" id="screen2">
+                        <img src="images/screen3.png" class="screen screen3" id="screen3">
                     </div>
                     <img class="continent_pic" src="images/kontinent_game.png">
                 </a>
@@ -58,21 +58,21 @@
             </div>
             <div class="continent about" data-activates="about_info">
                 <img class="continent_pic" src="images/kontinent_about.png">
-                <img src="images/beam.png" class="beam blinking_beam">
+                <img src="images/beam.png" class="beam blinking_beam" id="beam">
             </div>
             <div class="continent center">
                 <img class="continent_pic" src="images/kontinent_center.png">
             </div>
         </div>
-        <div class="continent_info spinster_info">
+        <div class="continent_info spinster_info" id="spinster_info">
             <h4 class="info_title">Spinster</h4>
             <h5 class="info_sub">Animated spinning icons generator for your website.</h5>
         </div>
-        <div class="continent_info game_info">
+        <div class="continent_info game_info" id="game_info">
             <h4 class="info_title">CO-LETTER-ALL</h4>
             <h5 class="info_sub">Browser game built in jQuery.</h5>
         </div>
-        <div class="continent_info about_info">
+        <div class="continent_info about_info" id="about_info">
             <h5 class="info_sub">About me:</h5>
             <h4 class="info_title">
                 I am a computer scientist and a freelance front-end developer currently based in 
@@ -86,7 +86,7 @@
                 <a href="https://github.com/MiloradFilipovic" title="See my LinkedIn profile." class="info-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
             </p>
         </div>
-        <div class="continent_info monarch_info">
+        <div class="continent_info monarch_info" id="monarch_info">
             <h4 class="info_title">MONARCH</h4>
             <h5 class="info_sub">Visual studio code color theme.</h5>
         </div>

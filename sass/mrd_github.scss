@@ -201,7 +201,7 @@ h5.info_sub {
     background: $planet_color;
     width: $initial_planet_size;
     height: $initial_planet_size;
-    margin: 25% auto 0;
+    margin: 22% auto 0;
     border-radius: 50%;
     border: 1px solid #000;
     @include transition;
@@ -313,12 +313,13 @@ h5.info_sub {
 
 .game_info {
     top: 22%;
-    left: 30%;
+    left: 28%;
 }
 
 .about_info {
     top: 74%;
     left: 19%;
+    padding: .5em 7em .5em .5em;
 }
 
 .spinster_info {
