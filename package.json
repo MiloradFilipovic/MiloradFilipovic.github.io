@@ -1,0 +1,27 @@
+{
+  "name": "MiloradFilipovic.github.io",
+  "version": "1.0.0",
+  "description": "MiloradFilipovic.github.io\r ==========================",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch --progress && sass --watch --style=compressed sass\\mrd_github.scss:stylesheets\\style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiloradFilipovic/MiloradFilipovic.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MiloradFilipovic/MiloradFilipovic.github.io/issues"
+  },
+  "homepage": "https://github.com/MiloradFilipovic/MiloradFilipovic.github.io#readme",
+  "devDependencies": {
+    "webpack": "^5.19.0",
+    "webpack-cli": "^4.4.0"
+  }
+}
