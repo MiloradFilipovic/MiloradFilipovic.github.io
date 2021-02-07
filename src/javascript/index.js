@@ -10,6 +10,7 @@ let screen_frame_2 = document.getElementById('screen2');
 let screen_frame_3 = document.getElementById('screen3');
 let tower_beam = document.getElementById('beam');
 let aboutme_div = document.getElementById('about_info');
+let continent_infos = document.querySelectorAll('.continent_info') || [];
 
 // Scale animation values and calculations
 let current_planet_scale = 1;
@@ -24,6 +25,7 @@ let current_continent_alpha = 0;
 let continent_alpha_step = 1 / planet_scale_step_count;
 
 let scaling = false;
+let ticking = false;
 
 let current_info_top = info_div.offsetTop;
 let current_info_left = info_div.offsetLeft;
@@ -34,31 +36,29 @@ let info_left_steps = current_info_left - final_info_left;
 let info_top_step = info_top_steps / planet_scale_step_count;
 let info_left_step = info_left_steps / planet_scale_step_count;
 
+// Touch events data
+let touching = false;
+var evCache = new Array();
+var prevDiff = -1;
+
 // particles.js init
 particlesJS.load('particles-js', 'config/particlesjs-config.json');
 
-
-// If touch events are supported, activate gesture scripts
-if ('ontouchstart' in document.documentElement) {
-    console.log('Touch controls are not currently supported.');
-}else {
-    let ticking = false;
-    // Main window scroll event. Detects scroll direction
-    // and triggers animations based on it
-    window.addEventListener('wheel', function(event) {
-        if (!ticking) {
-            window.requestAnimationFrame(function() {
-                if(event.deltaY > 0) {
-                    zoomOut();
-                }else {
-                    zoomIn();
-                }
-                ticking = false;
-            });
-        }
-        ticking = true;
-    });
-}
+// Main window scroll event. Detects scroll direction
+// and triggers animations based on it
+window.addEventListener('wheel', function(event) {
+    if (!ticking) {
+        window.requestAnimationFrame(function() {
+            if(event.deltaY > 0) {
+                zoomOut();
+            }else {
+                zoomIn();
+            }
+            ticking = false;
+        });
+    }
+    ticking = true;
+});
 
 // Zoom the planet up to specified max scale
 function zoomIn() {
@@ -101,6 +101,10 @@ function zoomOut() {
         }
         info_div.style.opacity = current_cloud_alpha;
         current_planet_scale -= planet_scale_step;
+
+        for(let infoDiv of continent_infos) {
+            infoDiv.style.display = 'none';
+        }
     }
 }
 
@@ -169,6 +173,99 @@ function setPosition(continent, popup) {
     }else if(popupPosition === 'bottom-right') {
         popup.style.top = continentRect.bottom - 50 + 'px';
         popup.style.left = continentRect.right - 20 + 'px';
+    }
+}
+
+
+function onPointerDown(event) {
+    evCache.push(event);
+    if(evCache.length > 1) {
+        touching = true;
+    }
+}
+
+function onPointerMove(event) {
+    for (let i = 0; i < evCache.length; i++) {
+        if(event.pointerId === evCache[i].pointerId) {
+            evCache[i] = event;
+            break;
+        }
+    }
+    
+    if(evCache.length === 2) {
+        var curDiff = Math.abs(evCache[0].clientX - evCache[1].clientX);
+        
+        if(prevDiff > 0) {
+            if(curDiff > prevDiff) {
+                zoomIn();
+            }
+        }
+        if(curDiff < prevDiff) {
+            zoomOut();
+        }
+    }
+    prevDiff = curDiff;
+}
+
+function onPointerUp(event) {
+    removeEvent(event);
+    if(evCache.length < 2) {
+        prevDiff = -1;
+    }
+    if(current_planet_scale >= 3) {
+        for(let continent of continents) {
+            continent.addEventListener('click', function(e) {
+                if(touching) {
+                    e.preventDefault();
+                    let activates = continent.getAttribute('data-activates');
+                    if(activates) {
+                        // Set popup element position based on the hovered continent position
+                        let activatesEl = document.getElementById(activates);
+                        if(activatesEl.style.display === 'none') {
+                            activatesEl.style.display = 'block';
+                            // Activate the arcade screen animation
+                            if(continent.classList.contains('game')) {
+                                activateScreenBlinking(); 
+                            }else if(continent.classList.contains('about')) {
+                                tower_beam.classList.remove('blinking_beam');
+                            }
+                        }
+                    }
+                }
+            })
+        }
+    }
+}
+
+document.body.onpointerdown = onPointerDown;
+document.body.onpointermove = onPointerMove;
+document.body.onpointerup = onPointerUp;
+document.body.onpointercancel = onPointerUp;
+document.body.onpointerout = onPointerUp;
+document.body.onpointerleave = onPointerUp;
+
+
+for(let infoDiv of continent_infos) {
+    infoDiv.addEventListener('click', function(event) {
+        if(touching) {
+            let tapLink = infoDiv.getAttribute('data-tap-link');
+            if(tapLink) {
+                event.stopPropagation;
+                Object.assign(document.createElement('a'), {
+                    target: '_blank',
+                    href: tapLink,
+                }).click();
+            }
+        };
+    })
+}
+
+function removeEvent(event) {
+    for(let i=0; i<evCache.length; i++) {
+        if(evCache[i].pointerId === event.pointerId) {
+            evCache.splice(i, 1);
+            break;
+        }
     }
 }
 
