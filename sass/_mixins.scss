@@ -38,3 +38,102 @@
         background: $background;
     }
 }
+
+@mixin mouse-scroll-animation {
+    @-webkit-keyframes scroll-ani {
+        0% {
+            opacity: 1;
+            top: 50%;
+        }
+        15% {
+            opacity: 1;
+            top: 29%;
+        }
+        50% {
+            opacity: 0;
+            top: 29%;
+        }
+        100% {
+            opacity: 0;
+            top: 50%;
+        }
+    }
+        
+        @-moz-keyframes scroll-ani {
+        0% {
+            opacity: 1;
+            top: 50%;
+        }
+        15% {
+            opacity: 1;
+            top: 29%;
+        }
+        50% {
+            opacity: 0;
+            top: 29%;
+        }
+        100% {
+            opacity: 0;
+            top: 50%;
+        }
+    }
+        
+        @keyframes scroll-ani {
+        0% {
+            opacity: 1;
+            top: 50%;
+        }
+        15% {
+            opacity: 1;
+            top: 29%;
+        }
+        50% {
+            opacity: 0;
+            top: 29%;
+        }
+        100% {
+            opacity: 0;
+            top: 50%;
+        }
+    }
+}
+
+@mixin arcade-screed-animation {
+    .s1_ani { animation: screen1_animation steps(1) 400ms infinite; }
+    .s2_ani { animation: screen2_animation steps(1) 400ms infinite; }
+    .s3_ani { animation: screen3_animation steps(1) 400ms infinite; }
+
+    @keyframes blinker {
+        0% { opacity: .7; }
+        30% { opacity: .3; }
+        60% { opacity: .7; }
+        100% { opacity: .3; }
+    }
+
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes screen1_animation {
+        0% { opacity: .7; }
+        20% { opacity: 0; }
+        80% { opacity: 0; }
+        100% { opacity: 0; }
+    }
+
+    @keyframes screen2_animation {
+        0% { opacity: 0; }
+        20% { opacity: .7; }
+        80% { opacity: 0; }
+        100% { opacity: 0; }
+    }
+
+    @keyframes screen3_animation {
+        0% { opacity: 0; }
+        20% { opacity: 0; }
+        80% { opacity: .7; }
+        100% { opacity: 0; }
+    }
+}

@@ -15,6 +15,7 @@ html, body {
 
 body {
     font-family: $font_main;
+    touch-action: none;
 }
 
 .gesture_label { display: none; }
@@ -50,62 +51,7 @@ a:visited { color: $selection_color; }
     }
 }
 
-@-webkit-keyframes scroll-ani {
-  0% {
-    opacity: 1;
-    top: 50%;
-  }
-  15% {
-    opacity: 1;
-    top: 29%;
-  }
-  50% {
-    opacity: 0;
-    top: 29%;
-  }
-  100% {
-    opacity: 0;
-    top: 50%;
-  }
-}
-
-@-moz-keyframes scroll-ani {
-  0% {
-    opacity: 1;
-    top: 50%;
-  }
-  15% {
-    opacity: 1;
-    top: 29%;
-  }
-  50% {
-    opacity: 0;
-    top: 29%;
-  }
-  100% {
-    opacity: 0;
-    top: 50%;
-  }
-}
-
-@keyframes scroll-ani {
-  0% {
-    opacity: 1;
-    top: 50%;
-  }
-  15% {
-    opacity: 1;
-    top: 29%;
-  }
-  50% {
-    opacity: 0;
-    top: 29%;
-  }
-  100% {
-    opacity: 0;
-    top: 50%;
-  }
-}
+@include mouse-scroll-animation;
 
 .mouse-scroll {
     line-height: 18px;
@@ -161,6 +107,23 @@ mouse-scroll:hover .mouse-message{
     margin-top: 0;
 }
 
+.pinch-icon {
+    color: $text_color_main;
+    font-size: 2em;
+    transform: scale(1);
+    display: none;
+    float: left;
+    line-height: 2em;
+    margin-right: .5em;
+    animation: pinch-animation 1s infinite;
+}
+
+@keyframes pinch-animation {
+    0% { transform: scale(0.85); }
+    70% { transform: scale(1); }
+    100% { transform: scale(0.85); }
+}
+
 h4.info_title {
     color: $text_color_main;
     font-size: 1.7em;
@@ -173,7 +136,6 @@ h5.info_sub {
     background: $selection_color;
     font-size: 1.2em;
     padding: .2em;
-    display: inline-block;
 }
 
 .info-icons {
@@ -329,61 +291,36 @@ h5.info_sub {
 
 .blinking_beam { animation: pulse 1500ms infinite; }
 .blinking { animation: blinker steps(1) 200ms infinite; }
-.s1_ani { animation: screen1_animation steps(1) 400ms infinite; }
-.s2_ani { animation: screen2_animation steps(1) 400ms infinite; }
-.s3_ani { animation: screen3_animation steps(1) 400ms infinite; }
+@include arcade-screed-animation;
 
-@keyframes blinker {
-    0% { opacity: .7; }
-    30% { opacity: .3; }
-    60% { opacity: .7; }
-    100% { opacity: .3; }
+.buttons {
+    display: inline-block;
+    text-decoration: none;
+    background-color: $text_color_sub;
+    color: $main_background !important;
+    padding: .2em 1em;
+    margin-top: .2em;
+    font-size: 1.4em;
+    font-weight: bold;
+    z-index: 999;
 }
 
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
+.button-description { 
+    color: $text_color_main; 
+    display: none;
 }
 
-@keyframes screen1_animation {
-    0% { opacity: .7; }
-    20% { opacity: 0; }
-    80% { opacity: 0; }
-    100% { opacity: 0; }
-}
+.tap-buttons { display: none; }
 
-@keyframes screen2_animation {
-    0% { opacity: 0; }
-    20% { opacity: .7; }
-    80% { opacity: 0; }
-    100% { opacity: 0; }
-}
-
-@keyframes screen3_animation {
-    0% { opacity: 0; }
-    20% { opacity: 0; }
-    80% { opacity: .7; }
-    100% { opacity: 0; }
-}
-
-.bands_container {
-    width: 30%;
-    height: 40%;
+.message {
+    position: absolute;
+    top: 9.5%;
+    width: 100%;
+    color: $text_color_main;
+    font-size: 2em;
     text-align: center;
-    margin: 20% auto 0 ;
-
-    .band_title {
-        margin-bottom: 1em;
-    }
-
-    ul { list-style: none; }
-    a  {
-        text-decoration: none;
-        color: $text_color_main;
-
-        &:hover { color: $text_color_sub; }
-    }
+    font-weight: bold;
+    opacity: 0;
 }
 
 @include laptop_res {
@@ -393,6 +330,9 @@ h5.info_sub {
 }
 
 @include mobile_res {
+    .pinch-icon { display: inline-block; }
+    .mouse-scroll { display: none; }
+
     .greeting {
         h3 { font-size: 1.5em; }
         h2 { 
@@ -441,5 +381,16 @@ h5.info_sub {
         top: 18px;
         width: 6px;
         height: 6px;
+    }
+
+    .message {
+        top: auto;
+        bottom: 10%;
+        font-size: 1.5em;
+    }
+
+    .tap-buttons { display: inline-block; }
+    .button-description { 
+        display: block;
     }
 }

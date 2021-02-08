@@ -1,3 +1,5 @@
+import { Messages } from './misc/consts';
+
 // Cached references to main elements on the page
 let main_container = document.getElementById('main_container');
 let planet = document.getElementById('planet');
@@ -11,6 +13,8 @@ let screen_frame_3 = document.getElementById('screen3');
 let tower_beam = document.getElementById('beam');
 let aboutme_div = document.getElementById('about_info');
 let continent_infos = document.querySelectorAll('.continent_info') || [];
+let messageDiv = document.getElementById('messageContainer-top');
+let tapButtons = document.querySelectorAll('.tap-buttons') || [];
 
 // Scale animation values and calculations
 let current_planet_scale = 1;
@@ -62,6 +66,7 @@ window.addEventListener('wheel', function(event) {
 
 // Zoom the planet up to specified max scale
 function zoomIn() {
+    messageDiv.innerText = touching ? `[ ${Messages.TAP_MESSAGE} ]` : `[ ${Messages.HOVER_MESSAGE} ]`;
     if(current_planet_scale <= max_planet_scale) {
         planet.style.transform = `scale(${current_planet_scale})`;
         if(current_cloud_alpha > 0) {
@@ -78,6 +83,7 @@ function zoomIn() {
             }
         }
         info_div.style.opacity = current_cloud_alpha;
+        messageDiv.style.opacity = current_continent_alpha;
         current_planet_scale += planet_scale_step;
     }
 }
@@ -100,6 +106,7 @@ function zoomOut() {
             }
         }
         info_div.style.opacity = current_cloud_alpha;
+        messageDiv.style.opacity = current_continent_alpha;
         current_planet_scale -= planet_scale_step;
 
         for(let infoDiv of continent_infos) {
@@ -156,6 +163,14 @@ aboutme_div.addEventListener('mouseout', function(event) {
     aboutme_div.style.display = 'none';
 });
 
+for(let button of tapButtons) {
+    button.addEventListener('touchend', function(event) {
+        // Trigger click on tap
+        event.target.click();
+    });
+    button.addEventListener('click', function(event) { event.stopPropagation(); })
+}
+
 // Sets the position of popup element based on it's data attribute and it's related continent position
 function setPosition(continent, popup) {
     let popupPosition = popup.getAttribute('data-position');
@@ -175,7 +190,6 @@ function setPosition(continent, popup) {
         popup.style.left = continentRect.right - 20 + 'px';
     }
 }
-
 
 function onPointerDown(event) {
     evCache.push(event);
@@ -244,21 +258,6 @@ document.body.onpointercancel = onPointerUp;
 document.body.onpointerout = onPointerUp;
 document.body.onpointerleave = onPointerUp;
 
-
-for(let infoDiv of continent_infos) {
-    infoDiv.addEventListener('click', function(event) {
-        if(touching) {
-            let tapLink = infoDiv.getAttribute('data-tap-link');
-            if(tapLink) {
-                event.stopPropagation;
-                Object.assign(document.createElement('a'), {
-                    target: '_blank',
-                    href: tapLink,
-                }).click();
-            }
-        };
-    })
-}
 
 function removeEvent(event) {
     for(let i=0; i<evCache.length; i++) {

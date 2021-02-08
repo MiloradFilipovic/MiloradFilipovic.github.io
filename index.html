@@ -23,7 +23,7 @@
     </script>
 </head>
 
-<body style="touch-action:none">
+<body>
     <div class="particles" id="particles-js"></div>
     <div class="main_container" id="main_container">
         <div class="info" id="info">
@@ -33,6 +33,7 @@
                 </span>
                 <span class="mouse-message fadeIn">scroll</span>
             </div>
+            <div class="pinch-icon"><i class="fas fa-expand-alt"></i></div>
             <div class="greeting">
                 <h2>Hi, my name is Milorad Filipović. Welcome to my online portfolio</h2>
                 <h3>Zoom in to see the good stuff.</h3>
@@ -72,13 +73,20 @@
                 <img class="continent_pic" src="images/kontinent_center.png">
             </div>
         </div>
-        <div class="continent_info spinster_info" id="spinster_info" data-position="bottom-right" data-tap-link="spinster.html">
+        <div class="continent_info spinster_info" id="spinster_info" data-position="bottom-right">
             <h4 class="info_title">Spinster</h4>
             <h5 class="info_sub">Animated spinning icons generator for your website.</h5>
+            <a href="spinster.html" class="buttons tap-buttons spinster-button" target="_blank">
+                <i class="fas fa-rocket"></i> Try it
+            </a>
         </div>
-        <div class="continent_info game_info" id="game_info" data-position="top-left" data-tap-link="game.html">
+        <div class="continent_info game_info" id="game_info" data-position="top-left">
             <h4 class="info_title">CO-LETTER-ALL</h4>
             <h5 class="info_sub">Browser game built in jQuery.</h5>
+            <a href="game.html" class="buttons tap-buttons game-button" target="_blank">
+                <i class="fas fa-gamepad"></i> Play*
+            </a>
+            <p class="button-description">* Requires mouse to play</p>
         </div>
         <div class="continent_info about_info" id="about_info" data-position="bottom-left">
             <h5 class="info_sub">About me:</h5>
@@ -94,10 +102,14 @@
                 <a href="https://github.com/MiloradFilipovic" title="See my LinkedIn profile." class="info-icon" target="_blank"><i class="fab fa-linkedin"></i></a>
             </p>
         </div>
-        <div class="continent_info monarch_info" id="monarch_info" data-position="top-right" data-tap-link="https://marketplace.visualstudio.com/items?itemName=mfilipovic.monarch">
+        <div class="continent_info monarch_info" id="monarch_info" data-position="top-right">
             <h4 class="info_title">MONARCH</h4>
             <h5 class="info_sub">Visual studio code color theme.</h5>
+            <a href="https://marketplace.visualstudio.com/items?itemName=mfilipovic.monarch" class="buttons tap-buttons monarch-button" target="_blank">
+                <i class="fas fa-laptop-code"></i> Check it out
+            </a>
         </div>
+        <div class="hover-message message" id="messageContainer-top"></div>
     </div>
 </body>
 </html>
